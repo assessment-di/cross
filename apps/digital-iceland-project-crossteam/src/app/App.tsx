@@ -2,7 +2,7 @@ import React from 'react'
 import { GridContainer } from '@island.is/island-ui/core'
 import HeaderGlobal from './components/headerGlobal'
 import Navigation from './components/navigation/navigation'
-import TaxReturnLogPage from './pages/taxReturnLog/taxReturnLogPage'
+import Dashboard from './pages/dashboard/dashboard'
 
 export function App() {
   return (
@@ -11,7 +11,7 @@ export function App() {
         <HeaderGlobal />
         <Navigation />
 
-        <TaxReturnLogPage />
+        <Dashboard />
         {/* START: routes */}
         {/* These routes and navigation have been generated for you */}
         {/* Feel free to move and update them to fit your needs */}

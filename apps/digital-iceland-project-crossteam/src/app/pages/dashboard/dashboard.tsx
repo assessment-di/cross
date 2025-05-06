@@ -3,7 +3,7 @@ import { Text, ActionCard, Box, Input, Button } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { LocaleContext } from '../../../i18n/LocaleContext'
 
-function TaxReturnLogPage() {
+function Dashboard() {
   const { formatMessage } = useIntl()
   const { locale } = useContext(LocaleContext)
 
@@ -15,7 +15,7 @@ function TaxReturnLogPage() {
   return (
     <>
       <Text variant="h1" as="h1">
-        <FormattedMessage id="taxReturnLogTitle" /> {prevYear}
+        <FormattedMessage id="dashboardTitle" /> {prevYear}
       </Text>
       <Box
         display="flex"
@@ -30,29 +30,29 @@ function TaxReturnLogPage() {
         background={'blue100'}
       >
         <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="taxReturnLogCardTitle" />
+          <FormattedMessage id="dashboardCardTitle" />
         </Text>
         <Text marginBottom={3}>
-          <FormattedMessage id="taxReturnLogCardRow1" />:
+          <FormattedMessage id="dashboardCardRow1" />:
         </Text>
         <Text marginBottom={3}>
-          <FormattedMessage id="taxReturnLogCardRow2" />:
+          <FormattedMessage id="dashboardCardRow2" />:
         </Text>
         <Text marginBottom={3}>
-          <FormattedMessage id="taxReturnLogCardUpdate" /> {lastUpdateDate}
+          <FormattedMessage id="dashboardCardUpdate" /> {lastUpdateDate}
         </Text>
         <Button>
-          <FormattedMessage id="taxReturnLogCardButton" />
+          <FormattedMessage id="dashboardCardButton" />
         </Button>
       </Box>
 
       <Text variant="h3" as="h1" marginBottom={3}>
-        <FormattedMessage id="taxReturnLogSectionsTitle" /> {prevYear}
+        <FormattedMessage id="dashboardSectionsTitle" /> {prevYear}
       </Text>
       {cardYears.map((year) => (
         <Box marginBottom={3}>
           <ActionCard
-            heading={`${formatMessage({ id: 'taxReturnLogSectionHeader' })} ${year}`}
+            heading={`${formatMessage({ id: 'dashboardSectionHeader' })} ${year}`}
             cta={{
               size: 'small',
               icon: 'arrowForward',
@@ -69,4 +69,4 @@ function TaxReturnLogPage() {
   )
 }
 
-export default TaxReturnLogPage
+export default Dashboard
