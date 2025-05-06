@@ -28,4 +28,12 @@ export default {
   taxReturnsFormInput7: 'Partners name',
   taxReturnsFormInput8: 'Partners ID number',
   taxReturnsFormSubmit: 'Submit',
+  taxReturnLogTitle: 'Tax return',
+  taxReturnLogCardTitle: 'Your current tax calculation',
+  taxReturnLogCardRow1: 'Total tax paid',
+  taxReturnLogCardRow2: 'Tax return',
+  taxReturnLogCardUpdate: 'Last updated',
+  taxReturnLogCardButton: 'See or make changes',
+  taxReturnLogSectionsTitle: 'Earlier tax returns',
+  taxReturnLogSectionHeader: 'Tax return',
 };
