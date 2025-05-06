@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '@island.is/island-ui/core'
 import { FormattedMessage } from 'react-intl'
+import { Link } from 'react-router-dom'
 
 function Navigation() {
   // const { formatMessage } = useIntl()
@@ -18,9 +19,34 @@ function Navigation() {
   // ]
 
   return (
-    <Button variant="text" preTextIcon="arrowBack">
-      <FormattedMessage id="financeTitle" />
-    </Button>
+    <>
+      <div role="navigation">
+        <ul>
+          <li>
+
+            <Link to="/">
+              <Button variant="text" preTextIcon="arrowBack">
+                Information
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard">
+              <Button variant="text" preTextIcon="arrowBack">
+                Dashboard
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/opened-tax-return">
+              <Button variant="text" preTextIcon="arrowBack">
+                Opened Tax Return
+              </Button>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </>
   )
     // {/*<ArrowLink href="/">*/}
     // {/*  <FormattedMessage id="login" />*/}
