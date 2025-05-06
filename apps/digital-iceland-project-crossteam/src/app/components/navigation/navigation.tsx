@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button } from '@island.is/island-ui/core'
-import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 
 function Navigation() {

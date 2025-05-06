@@ -2,7 +2,7 @@ export default {
   title: '_TAX_REVENUE_2025 – JOKULL_THORDARSON',
   globalSearch: '_WHAT_ARE_YOU_LOOKING_FOR?',
   login: '_LOGIN',
-  menu: '_MENU',
+  menu: 'Valmynd',
   financeTitle: '_FINANCE & TAXES',
   informationTitle: 'Tax returns',
   informationCardTitle: 'Tax return 2025 still open',
