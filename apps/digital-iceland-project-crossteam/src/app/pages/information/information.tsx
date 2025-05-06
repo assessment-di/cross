@@ -69,7 +69,6 @@ function Information() {
 
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput1' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -80,7 +79,6 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput2' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -91,7 +89,6 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput3' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -102,7 +99,6 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput4' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -113,7 +109,6 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput5' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -124,7 +119,6 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput6' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -135,7 +129,6 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput7' })}
             backgroundColor={['blue', 'blue', 'white']}
@@ -146,13 +139,10 @@ function Information() {
         </Box>
         <Box marginBottom={3}>
           <Input
-            textarea
             name="operatingLicenseSearchInput"
             placeholder={formatMessage({ id: 'informationFormInput8' })}
             backgroundColor={['blue', 'blue', 'white']}
             size="sm"
-            // icon={{ name: 'search', type: 'outline' }}
-            // onChange={(event) => onSearch(event.target.value)}
           />
         </Box>
         <Box marginBottom={3}>

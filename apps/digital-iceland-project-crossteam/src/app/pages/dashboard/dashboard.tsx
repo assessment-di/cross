@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Text, ActionCard, Box, Input, Button } from '@island.is/island-ui/core'
+import { Text, ActionCard, Box, Button } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { LocaleContext } from '../../../i18n/LocaleContext'
 
@@ -47,10 +47,10 @@ function Dashboard() {
       </Box>
 
       <Text variant="h3" as="h1" marginBottom={3}>
-        <FormattedMessage id="dashboardSectionsTitle" /> {prevYear}
+        <FormattedMessage id="dashboardSectionsTitle" />
       </Text>
       {cardYears.map((year) => (
-        <Box marginBottom={3}>
+        <Box marginBottom={3} key={year}>
           <ActionCard
             heading={`${formatMessage({ id: 'dashboardSectionHeader' })} ${year}`}
             cta={{
