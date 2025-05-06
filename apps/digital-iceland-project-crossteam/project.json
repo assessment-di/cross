@@ -1,0 +1,78 @@
+{
+  "name": "digital-iceland-project-crossteam",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/digital-iceland-project-crossteam/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/digital-iceland-project-crossteam",
+        "index": "apps/digital-iceland-project-crossteam/src/index.html",
+        "baseHref": "/",
+        "main": "apps/digital-iceland-project-crossteam/src/main.tsx",
+        "tsConfig": "apps/digital-iceland-project-crossteam/tsconfig.app.json",
+        "assets": [
+          "apps/digital-iceland-project-crossteam/src/favicon.ico",
+          "apps/digital-iceland-project-crossteam/src/assets"
+        ],
+        "styles": ["apps/digital-iceland-project-crossteam/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/digital-iceland-project-crossteam/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/digital-iceland-project-crossteam/src/environments/environment.ts",
+              "with": "apps/digital-iceland-project-crossteam/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "digital-iceland-project-crossteam:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "digital-iceland-project-crossteam:build:development"
+        },
+        "production": {
+          "buildTarget": "digital-iceland-project-crossteam:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/digital-iceland-project-crossteam/jest.config.ts"
+      }
+    }
+  }
+}

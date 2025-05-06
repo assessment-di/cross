@@ -64,11 +64,11 @@
     },
     "@nx/react": {
       "application": {
+        "babel": true,
         "style": "scss",
         "linter": "eslint",
         "bundler": "webpack",
-        "pascalCaseFiles": true,
-        "babel": true
+        "pascalCaseFiles": true
       },
       "component": {
         "style": "scss"
@@ -170,6 +170,15 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production", "DevOps"]
+    },
+    "@nx/vite:test": {
+      "cache": true,
+      "inputs": ["default", "^production"]
+    },
+    "@nx/vite:build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "namedInputs": {
