@@ -7,17 +7,25 @@ export default {
   taxReturnsTitle: '_TAX_RETURNS',
   taxReturnsCardTitle: '_TAX_RETURN_2025_STILL_OPEN',
   taxReturnsCardButton: '_LOGIN_TO_THE_TAX_RETURN',
-  taxReturnsBodyText: 'The National Archives of Iceland keeps tax returns of individuals and legal entities that have been submitted by tax offices around the country up until the year 2010. They contain various information about rights, such as pension rights, building reports, mortgage purchases, fund days and more. These sources are subject to access restrictions. See more details here about access to documents.\n' +
-    '\n' +
-    'In order to process tax returns, certain basic information must be available:\n' +
-    'Name and date of birth of the person who declares\n' +
-    'In which municipality the person concerned was domiciled\n' +
-    'Tax year\n' +
-    'Name and date of birth of the spouse in the case of co-taxation\n' +
-    '\n' +
-    'Tax returns that were submitted in electronic form are processed by the Iceland Revenue and Customs.\n' +
-    'Tax returns submitted on paper have mostly been submitted to the National Archives for preservation. The main exceptions are:\n' +
-    'Tax returns from Reykjavík up to 1981 are archived in the Reykjavík City Archives.\n' +
-    'Tax returns from the South after 1960.\n' +
-    'Tax returns from the West Fjords after 1984.\n',
+  taxReturnsBodyText1: 'The National Archives of Iceland keeps tax returns of individuals and legal entities that have been submitted by tax offices around the country up until the year 2010. They contain various information about rights, such as pension rights, building reports, mortgage purchases, fund days and more. These sources are subject to access restrictions. See more details here about access to documents.',
+  taxReturnsBodyText2: 'In order to process tax returns, certain basic information must be available:',
+  taxReturnsBodyPoint1: 'Name and date of birth of the person who declares',
+  taxReturnsBodyPoint2: 'In which municipality the person concerned was domiciled',
+  taxReturnsBodyPoint3: 'Tax year',
+  taxReturnsBodyPoint4: 'Name and date of birth of the spouse in the case of co-taxation',
+  taxReturnsBodyText3: 'Tax returns that were submitted in electronic form are processed by the Iceland Revenue and Customs.',
+  taxReturnsBodyText4: 'Tax returns submitted on paper have mostly been submitted to the National Archives for preservation. The main exceptions are:',
+  taxReturnsBodyPoint5: 'Tax returns from Reykjavík up to 1981 are archived in the Reykjavík City Archives.',
+  taxReturnsBodyPoint6: 'Tax returns from the South after 1960.',
+  taxReturnsBodyPoint7: 'Tax returns from the West Fjords after 1984.',
+  taxReturnsFormTitle: 'Inquery about tax return',
+  taxReturnsFormInput1: 'Full name',
+  taxReturnsFormInput2: 'Email',
+  taxReturnsFormInput3: 'Name of inquerer',
+  taxReturnsFormInput4: 'ID number',
+  taxReturnsFormInput5: 'Year of tax return',
+  taxReturnsFormInput6: 'Municipality',
+  taxReturnsFormInput7: 'Partners name',
+  taxReturnsFormInput8: 'Partners ID number',
+  taxReturnsFormSubmit: 'Submit',
 };
