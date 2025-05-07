@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { CreateNestedRevenueInput } from '../../revenue/dto/create-nested-revenue.input';
+import { CreateRevenueInput } from '../../revenue/dto/create-revenue.input';
 
 @InputType()
 export class CreateTaxReturnDto {
-  @Field(() => [CreateNestedRevenueInput], { nullable: true })
-  revenues?: CreateNestedRevenueInput[];
+  @Field(() => [CreateRevenueInput], { nullable: true })
+  revenues?: CreateRevenueInput[];
 }

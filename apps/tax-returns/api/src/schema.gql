@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateNestedRevenueInput {
+input CreateRevenueInput {
   currency: RevenueCurrency!
   description: String
   type: RevenueType!
@@ -10,7 +10,7 @@ input CreateNestedRevenueInput {
 }
 
 input CreateTaxReturnDto {
-  revenues: [CreateNestedRevenueInput!]
+  revenues: [CreateRevenueInput!]
 }
 
 """
@@ -68,7 +68,7 @@ input UpdateRevenueWithIdInput {
 }
 
 input UpdateTaxReturnDto {
-  createRevenues: [CreateNestedRevenueInput!]
+  createRevenues: [CreateRevenueInput!]
   deleteRevenueIds: [Int!]
   updateRevenues: [UpdateRevenueWithIdInput!]
 }

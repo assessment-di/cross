@@ -2,7 +2,7 @@ import { Field, Float, InputType } from '@nestjs/graphql';
 import { RevenueCurrency, RevenueType } from '../revenue.model';
 
 @InputType()
-export class CreateNestedRevenueInput {
+export class CreateRevenueInput {
   @Field(() => RevenueType)
   declare type: RevenueType;
 
