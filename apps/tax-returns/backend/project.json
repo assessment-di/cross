@@ -47,6 +47,41 @@
       "options": {
         "jestConfig": "apps/tax-returns/backend/jest.config.ts"
       }
+    },
+    "db:seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:seed:all --config ./config/database.js",
+        "cwd": "apps/tax-returns/backend"
+      }
+    },
+    "db:seed:undo": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:seed:undo:all --config ./config/database.js",
+        "cwd": "apps/tax-returns/backend"
+      }
+    },
+    "db:migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:migrate --config ./config/database.js",
+        "cwd": "apps/tax-returns/backend"
+      }
+    },
+    "db:migrate:undo": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:migrate:undo --config ./config/database.js",
+        "cwd": "apps/tax-returns/backend"
+      }
+    },
+    "db:migrate:undo:all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sequelize-cli db:migrate:undo:all --config ./config/database.js",
+        "cwd": "apps/tax-returns/backend"
+      }
     }
   }
 }
