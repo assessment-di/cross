@@ -110,6 +110,7 @@ export default {
   openedTaxCard7Row14: 'Total payments for the year',
   openedTaxCard7Row15: 'Installment of nominal value',
   openedTaxCard7Row16: 'Remaining debt',
+  openedTaxCard7Row17: 'Interest expenses',
   openedTaxCard7Placeholder: 'Sure you want to delete this post?',
   openedTaxCard7ButtonDelete: 'Delete',
   openedTaxCard7ButtonCancel: 'Cancel',

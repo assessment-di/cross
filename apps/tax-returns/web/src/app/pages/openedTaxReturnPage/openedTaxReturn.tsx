@@ -1,462 +1,371 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Text,
-  Box,
-  Input,
   Button,
-  Divider,
+  Icon,
 } from '@island.is/island-ui/core'
-import { FormattedMessage, useIntl } from 'react-intl'
-import { LocaleContext } from '../../../i18n/LocaleContext'
+import { FormattedMessage } from 'react-intl'
+import TaxReturnCard from '../../components/taxReturnCard/taxReturnCard'
+import { useTaxReturnData } from '../../hooks/useTaxReturnData'
+import RevenueCard from '../../components/revenueCard/revenueCard'
+import RealEstateCard from '../../components/realEstateCard/realEstateCard'
+import CarsCard from '../../components/carsCard/carsCard'
+import LoanCard from '../../components/loanCard/loanCard'
+import OtherDebtsCard from '../../components/otherDebtsCard/otherDebtsCard'
 
 function OpenedTaxReturn() {
-  const { formatMessage } = useIntl()
-  const { locale } = useContext(LocaleContext)
-
-  const prevYear = new Date().getFullYear() - 1;
-  const lastUpdateDate = new Date().toLocaleString(locale, { timeZone: "UTC" });
+  const { data } = useTaxReturnData()
+  const { revenues, debts, assets } = data
 
   return (
     <>
-      <Text variant="h1" as="h1">
-        <FormattedMessage id="openedTaxTitle" /> {prevYear}
-      </Text>
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor="mint200"
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-        background="mint200"
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCardTitle" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCardRow1" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCardRow2" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCardUpdate" /> {lastUpdateDate}
-        </Text>
-        <Button>
+      <TaxReturnCard
+        totalPaid={2808000}
+        taxReturn={32227}
+        lastUpdateDate={new Date()}
+        title={
+          <Text variant="h3" marginBottom={3}>
+            <FormattedMessage id="openedTaxCardTitle" />
+          </Text>
+        }
+        actionButtonContent={
           <FormattedMessage id="openedTaxCardButtonSubmit" />
-        </Button>
-        <Button variant="text">
-          <FormattedMessage id="openedTaxCardButtonCancel" />
-        </Button>
-      </Box>
+        }
+      />
 
-      <Text variant="h1" as="h1">
-        <FormattedMessage id="openedTaxTitle2" /> {prevYear}
+      <Text variant="h1" as="h1" marginBottom={3}>
+        <Icon icon="wallet" type="outline" color="blue400" />{' '}
+        <FormattedMessage id="openedTaxTitle2" />
       </Text>
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard2Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard2Row1" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard2Row2" />:
-        </Text>
-      </Box>
-
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard3Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard3Row1" />:
-        </Text>
-      </Box>
-
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard4Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard4Row1" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard4Row11" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard4Row2" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard4Row22" />:
-        </Text>
-      </Box>
-
+      {revenues.map((revenue) => (
+        <RevenueCard key={revenue.id} {...revenue} />
+      ))}
       <Button variant="ghost" icon="add">
         <FormattedMessage id="openedTaxAddRevenue" />
       </Button>
 
-      <Text variant="h1" as="h1">
+      <Text variant="h1" as="h1" marginY={3}>
+        <Icon icon="home" type="outline" color="blue400" />{' '}
         <FormattedMessage id="openedTaxTitle3" />
       </Text>
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard5Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard5Row1" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard5Row2" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard5Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard5Row4" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard5Row5" />:
-        </Text>
-      </Box>
+      {assets.realEstate.map((realEstate) => (
+        <RealEstateCard key={realEstate.id} {...realEstate} />
+      ))}
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard6Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row1" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row2" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row4" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row5" />:
-        </Text>
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row11" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row22" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row33" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row44" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row55" />:
-        </Text>
-        <Box
-          display="flex"
-          flexDirection="column"
-          borderColor="mint200"
-          borderRadius="large"
-          borderWidth="standard"
-          paddingX={[3, 3, 4]}
-          paddingY={3}
-          marginX={[3, 3, 4]}
-          marginY={3}
-          background="mint200"
-        >
-          <Input
-            name="operatingLicenseSearchInput"
-            placeholder={formatMessage({ id: 'openedTaxCard6InputPlaceholder' })}
-            backgroundColor={['blue', 'blue', 'white']}
-            size="sm"
-            // icon={{ name: 'search', type: 'outline' }}
-            // onChange={(event) => onSearch(event.target.value)}
-          />
-          <Button variant="ghost">
-            <FormattedMessage id="openedTaxCard6ButtonCancel" />
-          </Button>
-          <Button>
-            <FormattedMessage id="openedTaxCard6ButtonSubmit" />
-          </Button>
-        </Box>
-      </Box>
+      {assets.cars ? <CarsCard cars={assets.cars} /> : null}
 
       <Button variant="ghost" icon="add">
         <FormattedMessage id="openedTaxAddRevenue" />
       </Button>
 
-      <Text variant="h1" as="h1">
+      <Text variant="h1" as="h1" marginY={3}>
+        <Icon icon="receipt" type="outline" color="blue400" />{' '}
         <FormattedMessage id="openedTaxTitle4" />
       </Text>
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard7Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row1" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row2" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row4" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row5" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row6" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row7" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row8" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row9" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row10" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row11" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row12" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row13" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row14" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row15" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard7Row16" />:
-        </Text>
-        <Box
-          display="flex"
-          flexDirection="column"
-          borderColor="red200"
-          borderRadius="large"
-          borderWidth="standard"
-          paddingX={[3, 3, 4]}
-          paddingY={3}
-          marginX={[3, 3, 4]}
-          marginY={3}
-          background="red200"
-        >
-          <Text marginY={3}>
-            <FormattedMessage id="openedTaxCard7Placeholder" />
-          </Text>
-          <Button variant="ghost">
-            <FormattedMessage id="openedTaxCard7ButtonCancel" />
-          </Button>
-          <Button>
-            <FormattedMessage id="openedTaxCard7ButtonDelete" />
-          </Button>
-        </Box>
-      </Box>
+      {debts.loan ? <LoanCard {...debts.loan} /> : null}
 
       <Button variant="ghost" icon="add">
         <FormattedMessage id="openedTaxAddRevenue" />
       </Button>
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor={'blue200'}
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCard8Title" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row1" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row2" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row4" />:
-        </Text>
+      {debts.otherDebts ? (
+        <OtherDebtsCard otherDebts={debts.otherDebts} {...debts.loan} />
+      ) : null}
 
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row11" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard6Row4" />:
-        </Text>
+      {/*<Box*/}
+      {/*  display="flex"*/}
+      {/*  flexDirection="column"*/}
+      {/*  borderColor={'blue200'}*/}
+      {/*  borderRadius="large"*/}
+      {/*  borderWidth="standard"*/}
+      {/*  paddingX={[3, 3, 4]}*/}
+      {/*  paddingY={3}*/}
+      {/*  marginX={[3, 3, 4]}*/}
+      {/*  marginY={3}*/}
+      {/*>*/}
+      {/*  <Text variant="h3" marginBottom={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Title" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row1" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row2" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row4" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row5" />:*/}
+      {/*  </Text>*/}
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row11" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row22" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row33" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row44" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row55" />:*/}
+      {/*  </Text>*/}
+      {/*  <Box*/}
+      {/*    display="flex"*/}
+      {/*    flexDirection="column"*/}
+      {/*    borderColor="mint200"*/}
+      {/*    borderRadius="large"*/}
+      {/*    borderWidth="standard"*/}
+      {/*    paddingX={[3, 3, 4]}*/}
+      {/*    paddingY={3}*/}
+      {/*    marginX={[3, 3, 4]}*/}
+      {/*    marginY={3}*/}
+      {/*    background="mint200"*/}
+      {/*  >*/}
+      {/*    <Input*/}
+      {/*      name="operatingLicenseSearchInput"*/}
+      {/*      placeholder={formatMessage({ id: 'openedTaxCard6InputPlaceholder' })}*/}
+      {/*      backgroundColor={['blue', 'blue', 'white']}*/}
+      {/*      size="sm"*/}
+      {/*      // icon={{ name: 'search', type: 'outline' }}*/}
+      {/*      // onChange={(event) => onSearch(event.target.value)}*/}
+      {/*    />*/}
+      {/*    <Button variant="ghost">*/}
+      {/*      <FormattedMessage id="openedTaxCard6ButtonCancel" />*/}
+      {/*    </Button>*/}
+      {/*    <Button>*/}
+      {/*      <FormattedMessage id="openedTaxCard6ButtonSubmit" />*/}
+      {/*    </Button>*/}
+      {/*  </Box>*/}
+      {/*</Box>*/}
 
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row22" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row4" />:
-        </Text>
+      {/*<Button variant="ghost" icon="add">*/}
+      {/*  <FormattedMessage id="openedTaxAddRevenue" />*/}
+      {/*</Button>*/}
 
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row33" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row4" />:
-        </Text>
+      {/*<Text variant="h1" as="h1">*/}
+      {/*  <FormattedMessage id="openedTaxTitle4" />*/}
+      {/*</Text>*/}
 
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row44" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row4" />:
-        </Text>
+      {/*<Box*/}
+      {/*  display="flex"*/}
+      {/*  flexDirection="column"*/}
+      {/*  borderColor={'blue200'}*/}
+      {/*  borderRadius="large"*/}
+      {/*  borderWidth="standard"*/}
+      {/*  paddingX={[3, 3, 4]}*/}
+      {/*  paddingY={3}*/}
+      {/*  marginX={[3, 3, 4]}*/}
+      {/*  marginY={3}*/}
+      {/*>*/}
+      {/*  <Text variant="h3" marginBottom={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Title" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row1" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row2" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row4" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row5" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row6" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row7" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row8" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row9" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row10" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row11" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row12" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row13" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row14" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row15" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard7Row16" />:*/}
+      {/*  </Text>*/}
+      {/*  <Box*/}
+      {/*    display="flex"*/}
+      {/*    flexDirection="column"*/}
+      {/*    borderColor="red200"*/}
+      {/*    borderRadius="large"*/}
+      {/*    borderWidth="standard"*/}
+      {/*    paddingX={[3, 3, 4]}*/}
+      {/*    paddingY={3}*/}
+      {/*    marginX={[3, 3, 4]}*/}
+      {/*    marginY={3}*/}
+      {/*    background="red200"*/}
+      {/*  >*/}
+      {/*    <Text marginY={3}>*/}
+      {/*      <FormattedMessage id="openedTaxCard7Placeholder" />*/}
+      {/*    </Text>*/}
+      {/*    <Button variant="ghost">*/}
+      {/*      <FormattedMessage id="openedTaxCard7ButtonCancel" />*/}
+      {/*    </Button>*/}
+      {/*    <Button>*/}
+      {/*      <FormattedMessage id="openedTaxCard7ButtonDelete" />*/}
+      {/*    </Button>*/}
+      {/*  </Box>*/}
+      {/*</Box>*/}
 
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row55" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row3" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCard8Row4" />:
-        </Text>
-      </Box>
+      {/*<Button variant="ghost" icon="add">*/}
+      {/*  <FormattedMessage id="openedTaxAddRevenue" />*/}
+      {/*</Button>*/}
 
-      <Button variant="ghost" icon="add">
-        <FormattedMessage id="openedTaxAddRevenue" />
-      </Button>
+      {/*<Box*/}
+      {/*  display="flex"*/}
+      {/*  flexDirection="column"*/}
+      {/*  borderColor={'blue200'}*/}
+      {/*  borderRadius="large"*/}
+      {/*  borderWidth="standard"*/}
+      {/*  paddingX={[3, 3, 4]}*/}
+      {/*  paddingY={3}*/}
+      {/*  marginX={[3, 3, 4]}*/}
+      {/*  marginY={3}*/}
+      {/*>*/}
+      {/*  <Text variant="h3" marginBottom={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Title" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row1" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row2" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row4" />:*/}
+      {/*  </Text>*/}
 
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row11" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard6Row4" />:*/}
+      {/*  </Text>*/}
 
-      <Box
-        display="flex"
-        flexDirection="column"
-        borderColor="mint200"
-        borderRadius="large"
-        borderWidth="standard"
-        paddingX={[3, 3, 4]}
-        paddingY={3}
-        marginX={[3, 3, 4]}
-        marginY={3}
-        background="mint200"
-      >
-        <Text variant="h3" marginBottom={3}>
-          <FormattedMessage id="openedTaxCardTitle" />
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCardRow1" />:
-        </Text>
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCardRow2" />:
-        </Text>
-        <Divider />
-        <Text marginY={3}>
-          <FormattedMessage id="openedTaxCardUpdate" /> {lastUpdateDate}
-        </Text>
-        <Button>
-          <FormattedMessage id="openedTaxCardButtonResubmit" />
-        </Button>
-        <Button variant="text">
-          <FormattedMessage id="openedTaxCardButtonExit" />
-        </Button>
-      </Box>
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row22" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row4" />:*/}
+      {/*  </Text>*/}
+
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row33" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row4" />:*/}
+      {/*  </Text>*/}
+
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row44" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row4" />:*/}
+      {/*  </Text>*/}
+
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row55" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row3" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCard8Row4" />:*/}
+      {/*  </Text>*/}
+      {/*</Box>*/}
+
+      {/*<Button variant="ghost" icon="add">*/}
+      {/*  <FormattedMessage id="openedTaxAddRevenue" />*/}
+      {/*</Button>*/}
+
+      {/*<Box*/}
+      {/*  display="flex"*/}
+      {/*  flexDirection="column"*/}
+      {/*  borderColor="mint200"*/}
+      {/*  borderRadius="large"*/}
+      {/*  borderWidth="standard"*/}
+      {/*  paddingX={[3, 3, 4]}*/}
+      {/*  paddingY={3}*/}
+      {/*  marginX={[3, 3, 4]}*/}
+      {/*  marginY={3}*/}
+      {/*  background="mint200"*/}
+      {/*>*/}
+      {/*  <Text variant="h3" marginBottom={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCardTitle" />*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCardRow1" />:*/}
+      {/*  </Text>*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCardRow2" />:*/}
+      {/*  </Text>*/}
+      {/*  <Divider />*/}
+      {/*  <Text marginY={3}>*/}
+      {/*    <FormattedMessage id="openedTaxCardUpdate" /> {lastUpdateDate}*/}
+      {/*  </Text>*/}
+      {/*  <Button>*/}
+      {/*    <FormattedMessage id="openedTaxCardButtonResubmit" />*/}
+      {/*  </Button>*/}
+      {/*  <Button variant="text">*/}
+      {/*    <FormattedMessage id="openedTaxCardButtonExit" />*/}
+      {/*  </Button>*/}
+      {/*</Box>*/}
     </>
   )
 }

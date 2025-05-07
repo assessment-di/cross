@@ -11,7 +11,16 @@ function Dashboard() {
 
   return (
     <>
-      <TaxReturnCard year={prevYear} totalPaid={2808000} taxReturn={32227} lastUpdateDate={new Date()} />
+      <TaxReturnCard
+        totalPaid={2808000}
+        taxReturn={32227}
+        lastUpdateDate={new Date()}
+        title={
+          <Text variant="h3" marginBottom={3}>
+            <FormattedMessage id="dashboardTitle" /> {prevYear}
+          </Text>
+        }
+      />
 
       <Text variant="h3" as="h1" marginBottom={3}>
         <FormattedMessage id="dashboardSectionsTitle" />

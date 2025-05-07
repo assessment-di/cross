@@ -1,24 +1,28 @@
-import React, { useContext } from 'react'
-import {
-  Text,
-  Box,
-  Button,
-  Divider
-} from '@island.is/island-ui/core'
-import { FormattedMessage } from 'react-intl'
+import React, { useContext, ReactNode } from 'react'
+import { Text, Box, Button, Divider } from '@island.is/island-ui/core'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { LocaleContext } from '../../../i18n/LocaleContext'
 import * as styles from './taxReturnCard.css'
+import TaxReturnCardRow from './taxReturnCardRow'
 
 type Props = {
-  year: number,
-  totalPaid: number,
-  taxReturn: number,
-  lastUpdateDate: Date,
+  title: ReactNode | string
+  actionButtonContent?: ReactNode | string
+  totalPaid: number
+  taxReturn: number
+  lastUpdateDate: Date
 }
 
-function TaxReturnCard({ year, totalPaid, taxReturn, lastUpdateDate = new Date() }: Props) {
+function TaxReturnCard({
+  title,
+  totalPaid,
+  taxReturn,
+  lastUpdateDate = new Date(),
+  actionButtonContent,
+}: Props) {
   const { locale } = useContext(LocaleContext)
-  const lastUpdate = lastUpdateDate.toLocaleString(locale, { timeZone: "UTC" });
+  const lastUpdate = lastUpdateDate.toLocaleString(locale, { timeZone: 'UTC' })
+  const { formatMessage } = useIntl()
 
   return (
     <Box
@@ -32,25 +36,20 @@ function TaxReturnCard({ year, totalPaid, taxReturn, lastUpdateDate = new Date()
       marginBottom={3}
       background="mint100"
     >
-      <Text variant="h3" marginBottom={3}>
-        <FormattedMessage id="dashboardTitle" /> {year}
-      </Text>
+      {title}
 
       <div className={styles.container}>
-        <Text>
-          <FormattedMessage id="dashboardCardRow1" />:
-        </Text>
-        <Text color="roseTinted400" fontWeight="medium" textAlign="right">
-          {totalPaid}
-        </Text>
-        <Text>
-          <FormattedMessage id="dashboardCardRow2" />:
-        </Text>
-        <Text color="roseTinted400" fontWeight="medium" textAlign="right">
-          {taxReturn}
-        </Text>
+        <TaxReturnCardRow
+          title={formatMessage({ id: 'dashboardCardRow1' })}
+          value={totalPaid}
+        />
+        <TaxReturnCardRow
+          title={formatMessage({ id: 'dashboardCardRow2' })}
+          value={taxReturn}
+        />
       </div>
-      <Divider  />
+
+      <Divider />
 
       <div className={styles.actions}>
         <Text textAlign={'center'}>
@@ -58,7 +57,7 @@ function TaxReturnCard({ year, totalPaid, taxReturn, lastUpdateDate = new Date()
         </Text>
 
         <Button fluid size="medium">
-          <FormattedMessage id="dashboardCardButton" />
+          {actionButtonContent || <FormattedMessage id="dashboardCardButton" />}
         </Button>
       </div>
     </Box>
