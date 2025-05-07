@@ -26,7 +26,7 @@ export class TaxReturnResolver {
     const taxReturn = await this.taxReturnService.findOne(id);
 
     if (taxReturn.userUuid !== userUuid) {
-      // TODO userUuid is given from dummyAuth, we're assuming it's an authorized user and comment next check
+      // TODO userUuid is given from mockAuth, we're assuming it's an authorized user and comment next check
       // throw new ForbiddenException('Not authorized to access this tax return');
     }
     return taxReturn;
@@ -51,7 +51,7 @@ export class TaxReturnResolver {
   ): Promise<TaxReturn> {
     const taxReturn = await this.taxReturnService.findOne(id);
     if (taxReturn.userUuid !== userUuid) {
-      // TODO userUuid is given from dummyAuth, we're assuming it's an authorized user and comment next check
+      // TODO userUuid is given from mockAuth, we're assuming it's an authorized user and comment next check
       // throw new ForbiddenException('Not authorized to update this tax return');
     }
 
@@ -65,7 +65,7 @@ export class TaxReturnResolver {
   ): Promise<boolean> {
     const taxReturn = await this.taxReturnService.findOne(id);
     if (taxReturn.userUuid !== userUuid) {
-      // TODO userUuid is given from dummyAuth, we're assuming it's an authorized user and comment next check
+      // TODO userUuid is given from mockAuth, we're assuming it's an authorized user and comment next check
       // throw new ForbiddenException('Not authorized to delete this tax return');
     }
 

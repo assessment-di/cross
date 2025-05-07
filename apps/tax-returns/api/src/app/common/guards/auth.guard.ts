@@ -1,13 +1,13 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { dummyAuth } from '../utils/auth.util';
+import { mockAuth } from '../utils/auth.util';
 import { AuthContext } from '../types/auth.types';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const ctx = GqlExecutionContext.create(context);
-    const auth = dummyAuth();
+    const auth = mockAuth();
 
     if (!auth.isAuthenticated) {
       throw new Error('Not authenticated');
