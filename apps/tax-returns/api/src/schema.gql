@@ -1,0 +1,74 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateNestedRevenueInput {
+  currency: RevenueCurrency!
+  description: String
+  type: RevenueType!
+  value: Float!
+}
+
+input CreateTaxReturnDto {
+  revenues: [CreateNestedRevenueInput!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createTaxReturn(input: CreateTaxReturnDto!): TaxReturn!
+  removeTaxReturn(id: ID!): Boolean!
+  updateTaxReturn(id: ID!, input: UpdateTaxReturnDto!): TaxReturn!
+}
+
+type Query {
+  taxReturn(id: ID!): TaxReturn!
+  taxReturns: [TaxReturn!]!
+}
+
+type Revenue {
+  createdAt: DateTime!
+  currency: RevenueCurrency!
+  description: String
+  id: ID!
+  taxReturn: TaxReturn!
+  taxReturnId: ID!
+  type: RevenueType!
+  updatedAt: DateTime!
+  value: Float!
+}
+
+enum RevenueCurrency {
+  ISK
+}
+
+enum RevenueType {
+  PENSION_PAYMENTS
+  SALARY_AND_PAYMENTS
+  VEHICLE_ALLOWANCE
+}
+
+type TaxReturn {
+  createdAt: DateTime!
+  id: ID!
+  revenues: [Revenue!]
+  updatedAt: DateTime!
+  userUuid: String!
+}
+
+input UpdateRevenueWithIdInput {
+  currency: RevenueCurrency
+  description: String
+  id: Int!
+  type: RevenueType
+  value: Float
+}
+
+input UpdateTaxReturnDto {
+  createRevenues: [CreateNestedRevenueInput!]
+  deleteRevenueIds: [Int!]
+  updateRevenues: [UpdateRevenueWithIdInput!]
+}
