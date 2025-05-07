@@ -4,10 +4,16 @@ import { FormattedMessage } from 'react-intl'
 
 type Props = {
   titleIcon?: string
-  title: string;
+  title: string
+  isReadonly: boolean
 }
 
-const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({ titleIcon, title, children }) => {
+const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
+  titleIcon,
+  title,
+  children,
+  isReadonly,
+}) => {
   return (
     <>
       <Text variant="h1" as="h1" marginY={3}>
@@ -21,9 +27,11 @@ const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({ titleI
 
       {children}
 
-      <Button variant="ghost" icon="add">
-        <FormattedMessage id="openedTaxAddRevenue" />
-      </Button>
+      {!isReadonly ? (
+        <Button variant="ghost" icon="add">
+          <FormattedMessage id="openedTaxAddRevenue" />
+        </Button>
+      ) : null}
     </>
   )
 }

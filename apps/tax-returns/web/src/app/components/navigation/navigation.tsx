@@ -22,7 +22,6 @@ const Navigation: React.FC = () => {
       <div role="navigation">
         <ul>
           <li>
-
             <Link to="/">
               <Button variant="text" preTextIcon="arrowBack">
                 Information

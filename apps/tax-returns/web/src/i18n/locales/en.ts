@@ -53,39 +53,32 @@ export default {
 
   openedTaxCard2Title: 'Salary and work-related payments',
   openedTaxCard2Row1: 'Norðurljós Software ehf',
-  openedTaxCard2Row2: 'Mús & Merki ehf',
 
   openedTaxCard3Title: 'Vehicle allowance. Daily allowance. Benefits',
-  openedTaxCard3Row1: 'Daily allowance',
+  // openedTaxCard3Row1: 'Daily allowance',
 
   openedTaxCard4Title: 'Pension payments. Payments from the Social Security Administration. Other benefits, grants, etc.',
   openedTaxCard4Row1: 'Norðurljós Software ehf',
-  openedTaxCard4Row11: 'Sports grant',
+  // openedTaxCard4Row11: 'Sports grant',
   openedTaxCard4Row2: 'VR',
-  openedTaxCard4Row22: 'Educational/training grant',
+  // openedTaxCard4Row22: 'Educational/training grant',
 
   openedTaxAddRevenue: 'Add revenue',
 
   openedTaxTitle3: 'Assets',
 
-
   openedTaxCard5Title: 'Real estate in Iceland',
   openedTaxCard5Row1: 'Registered real estate number',
-  openedTaxCard5Row2: '210-9876',
   openedTaxCard5Row3: 'Adress',
-  openedTaxCard5Row4: 'Bláfjallagata 12',
   openedTaxCard5Row5: 'Real estate valuation',
 
   openedTaxCard6Title: 'Cars',
   openedTaxCard6Row1: 'Car number',
-  openedTaxCard6Row2: 'KB-521',
+
   openedTaxCard6Row3: 'Year of purchase',
-  openedTaxCard6Row4: '2021',
-  openedTaxCard6Row5: 'Purchase price',
+  // openedTaxCard6Row5: 'Purchase price',
   openedTaxCard6Row11: 'Car number',
-  openedTaxCard6Row22: 'JU-329',
   openedTaxCard6Row33: 'Year of purchase',
-  openedTaxCard6Row44: '2012',
   openedTaxCard6Row55: 'Purchase price',
   openedTaxCard6InputPlaceholder: 'Change to',
   openedTaxCard6ButtonSubmit: 'Save',
@@ -95,29 +88,22 @@ export default {
 
   openedTaxCard7Title: 'Interest expenses on residential property for own use',
   openedTaxCard7Row1: 'Purchase year',
-  openedTaxCard7Row2: '2021',
+
   openedTaxCard7Row3: 'Residential location',
-  openedTaxCard7Row4: 'Bláfjallagata 12',
   openedTaxCard7Row5: 'Loan provider',
-  openedTaxCard7Row6: 'Íslandsbanki hf.',
   openedTaxCard7Row7: 'SSN',
   openedTaxCard7Row8: 'Loan number',
-  openedTaxCard7Row9: '56783900123',
   openedTaxCard7Row10: 'Loan date',
-  openedTaxCard7Row11: '15.júní 2021',
   openedTaxCard7Row12: 'Loan time in years',
-  openedTaxCard7Row13: '30',
   openedTaxCard7Row14: 'Total payments for the year',
   openedTaxCard7Row15: 'Installment of nominal value',
   openedTaxCard7Row16: 'Remaining debt',
   openedTaxCard7Row17: 'Interest expenses',
   openedTaxCard7Placeholder: 'Sure you want to delete this post?',
   openedTaxCard7ButtonDelete: 'Delete',
-  openedTaxCard7ButtonCancel: 'Cancel',
+  // openedTaxCard7ButtonCancel: 'Cancel',
 
   openedTaxCard8Title: 'Other debts and interest expenses',
-  openedTaxCard8Row1: 'Eftirstöðvar á korti númer',
-  openedTaxCard8Row2: '4469 88XX XXXX 4567',
   openedTaxCard8Row3: 'Interest expenses',
   openedTaxCard8Row4: 'Remaining debt',
 
@@ -127,5 +113,5 @@ export default {
   openedTaxCard8Row44: 'Interest expenses',
   openedTaxCard8Row55: 'Parliamentary and local government fees, Tax',
 
-
+  openedTaxSubmit: 'Tax return submitted!',
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useIntl } from 'react-intl'
 import { Loan } from '../../../hooks/useTaxReturnData'
-import BaseCard from '../../../components/baseCard/baseCard'
+import BaseCard, { BaseCardProps } from '../../../components/baseCard/baseCard'
 import BaseCardRowWithAction from '../../../components/baseCard/baseCardRowWithAction'
 import BaseCardRowSimple from '../../../components/baseCard/baseCardRowSimple'
 
-type Props = Loan & {}
+type Props = Loan & BaseCardProps
 
 const LoanCard: React.FC<Props> = ({
   purchaseYear,
@@ -19,6 +19,7 @@ const LoanCard: React.FC<Props> = ({
   installmentOfNominalValue,
   interestExpenses,
   remainingDebt,
+  isReadonly,
 }) => {
   const { formatMessage } = useIntl()
 
@@ -31,10 +32,10 @@ const LoanCard: React.FC<Props> = ({
       <BaseCardRowSimple title={formatMessage({ id: "openedTaxCard7Row8" })} value={loanNumber} />
       <BaseCardRowSimple title={formatMessage({ id: "openedTaxCard7Row10" })} value={loanDate} />
       <BaseCardRowSimple title={formatMessage({ id: "openedTaxCard7Row12" })} value={loanTimeYears} />
-      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row14" })} value={totalPayments} />
-      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row15" })} value={installmentOfNominalValue} />
-      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row17" })} value={interestExpenses} />
-      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row16" })} value={remainingDebt} />
+      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row14" })} value={totalPayments} isReadonly={isReadonly} />
+      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row15" })} value={installmentOfNominalValue} isReadonly={isReadonly} />
+      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row17" })} value={interestExpenses} isReadonly={isReadonly} />
+      <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard7Row16" })} value={remainingDebt} isReadonly={isReadonly} />
     </BaseCard>
   )
 }

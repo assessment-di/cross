@@ -2,11 +2,15 @@ import React, { ReactNode, PropsWithChildren } from 'react'
 import { Text, Box, Button } from '@island.is/island-ui/core'
 import * as styles from './baseCard.css'
 
+export type BaseCardProps = {
+  isReadonly: boolean
+}
+
 type Props = {
   title: ReactNode | string
 }
 
-const BaseCard: React.FC<React.PropsWithChildren<Props>> = ({ title, children }) => {
+const BaseCard: React.FC<PropsWithChildren<Props>> = ({ title, children }) => {
   return (
     <Box
       display="flex"

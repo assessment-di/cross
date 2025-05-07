@@ -15,3 +15,10 @@ export const container = style({
   marginTop: 24,
   marginBottom: 24,
 })
+
+export const editAction = style({
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: 24,
+  marginTop: 24,
+})
