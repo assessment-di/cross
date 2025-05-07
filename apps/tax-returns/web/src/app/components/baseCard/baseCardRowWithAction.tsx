@@ -8,8 +8,8 @@ type Mode = 'edit' | 'delete' | undefined
 
 type Props = {
   title: ReactNode | string
-  value: string | number
-  onEdit?: (newValue: string | number) => void
+  value: number
+  onEdit?: (newValue: number) => void
   onRemove?: () => void
   isReadonly: boolean
 }
@@ -18,8 +18,8 @@ const BaseCardRowWithAction: React.FC<React.PropsWithChildren<Props>> = ({ title
   const [mode, setMode] = useState<Mode>(undefined)
 
   const onCancel = () => setMode(undefined)
-  const onSubmit = (newValue: string | number) => {
-    onEdit?.(newValue)
+  const onSubmit = (newValue: number) => {
+    onEdit?.(+newValue)
     onCancel()
   }
   const onDelete = () => {
@@ -59,7 +59,7 @@ const BaseCardRowWithAction: React.FC<React.PropsWithChildren<Props>> = ({ title
           ) : null
         }
       </div>
-      {mode === 'edit' ? <EditActionBox onCancel={onCancel} onSubmit={onSubmit} /> : null}
+      {mode === 'edit' ? <EditActionBox initialValue={value} onCancel={onCancel} onSubmit={onSubmit} /> : null}
       {mode === 'delete' ? <DeleteActionBox onCancel={onCancel} onDelete={onDelete} /> : null}
     </>
   )

@@ -157,7 +157,7 @@ function useTaxReturnData() {
     }));
   };
 
-  const removeDebt = (id: string) => {
+  const removeDebt = (id?: string) => {
     setData((prev) => ({
       ...prev,
       debts: {
@@ -205,7 +205,7 @@ function useTaxReturnData() {
     }));
   };
 
-  const removeCar = (id: string) => {
+  const removeCar = (id?: string) => {
     setData((prev) => ({
       ...prev,
       assets: {
@@ -238,7 +238,7 @@ function useTaxReturnData() {
     }));
   };
 
-  const removeRealEstate = (id: string) => {
+  const removeRealEstate = (id?: string) => {
     setData((prev) => ({
       ...prev,
       assets: {
@@ -265,7 +265,7 @@ function useTaxReturnData() {
     }));
   };
 
-  const removeRevenue = (id: string) => {
+  const removeRevenue = (id?: string) => {
     setData((prev) => ({
       ...prev,
       revenues: prev.revenues.filter((r) => r.id !== id),

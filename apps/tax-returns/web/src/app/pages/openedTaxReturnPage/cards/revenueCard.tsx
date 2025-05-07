@@ -17,18 +17,47 @@ const getTitleIdFromType = (type: Revenue['type']) => {
   }
 }
 
-type Props = Revenue & BaseCardProps
+type Props = Revenue & BaseCardProps & {
+  onEdit: (updated: Revenue) => void
+}
 
-const RevenueCard: React.FC<Props> = ({ type, description, amount, isReadonly }) => {
+const RevenueCard: React.FC<Props> = ({
+  type,
+  description,
+  amount,
+  isReadonly,
+  id,
+  onRemove,
+  onEdit,
+}) => {
   const { formatMessage } = useIntl()
 
   const title = useMemo(() => {
     return formatMessage({ id: getTitleIdFromType(type) })
   }, [formatMessage, type])
 
+  const onSubmitEdit = (newAmount: number) => {
+    onEdit({
+      type,
+      description,
+      id,
+      amount: +newAmount
+    })
+  }
+
+  const onDelete = () => {
+    onRemove(id)
+  }
+
   return (
     <BaseCard title={title}>
-      <BaseCardRowWithAction title={description} value={amount} isReadonly={isReadonly} />
+      <BaseCardRowWithAction
+        title={description}
+        value={amount}
+        isReadonly={isReadonly}
+        onRemove={onDelete}
+        onEdit={onSubmitEdit}
+      />
     </BaseCard>
   )
 }
