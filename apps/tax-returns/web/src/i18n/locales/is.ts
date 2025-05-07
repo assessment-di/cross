@@ -29,7 +29,7 @@ export default {
   informationFormInput8: 'Partners ID number',
   informationFormSubmit: 'Submit',
   dashboardTitle: 'Tax return',
-  dashboardCardTitle: 'Your current tax calculation',
+  // dashboardCardTitle: 'Your current tax calculation',
   dashboardCardRow1: 'Total tax paid',
   dashboardCardRow2: 'Tax return',
   dashboardCardUpdate: 'Last updated',
