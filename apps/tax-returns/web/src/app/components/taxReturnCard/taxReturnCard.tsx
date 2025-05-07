@@ -1,10 +1,10 @@
 import React, { useContext, ReactNode } from 'react'
+import classnames from 'classnames'
 import { Text, Box, Button, Divider, Icon } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { LocaleContext } from '../../../i18n/LocaleContext'
 import * as styles from './taxReturnCard.css'
 import TaxReturnCardRow from './taxReturnCardRow'
-import { checkIcon } from './taxReturnCard.css'
 
 type Props = {
   title: ReactNode | string
@@ -14,6 +14,7 @@ type Props = {
   lastUpdateDate: Date
   isSubmitted?: boolean
   onSubmit?: () => void
+  isSmall?: boolean
 }
 
 const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
@@ -23,7 +24,8 @@ const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
                                                                    lastUpdateDate = new Date(),
                                                                    actionButtonContent,
                                                                    isSubmitted,
-                                                                   onSubmit
+                                                                   onSubmit,
+                                                                   isSmall,
                                                                  }) => {
   const { locale } = useContext(LocaleContext)
   const lastUpdate = lastUpdateDate.toLocaleString(locale, { timeZone: 'UTC' })
@@ -40,6 +42,8 @@ const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
       paddingY={3}
       marginBottom={3}
       background="mint100"
+      position={isSmall ? 'sticky' : undefined}
+      top={3}
     >
       {title}
 
@@ -56,33 +60,37 @@ const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
 
       <Divider />
 
-      {
-        !isSubmitted ? (
-          <div className={styles.actions}>
-            <Text textAlign={'center'}>
-              <FormattedMessage id="dashboardCardUpdate" /> {lastUpdate}
-            </Text>
+      {!isSubmitted ? (
+        <div
+          className={classnames(styles.actions, {
+            [styles.actionsSmall]: isSmall,
+          })}
+        >
+          <Text textAlign={'center'} as="span" whiteSpace="pre">
+            <FormattedMessage id="dashboardCardUpdate" /> {lastUpdate}
+          </Text>
 
-            <Button fluid size="medium" onClick={onSubmit}>
-              {actionButtonContent || <FormattedMessage id="dashboardCardButton" />}
-            </Button>
-          </div>
-        ) :
-          <Box
-            className={styles.submitContainer}
-            background="mint200"
-            borderColor="blue200"
-            borderRadius="large"
-            borderWidth="standard"
-            padding={3}
-          >
-            <Icon icon="checkmark" color="white" className={styles.checkIcon} />{' '}
-            <Text fontWeight="medium" as="span">
-              <FormattedMessage id="openedTaxSubmit" />
-            </Text>
-          </Box>
-      }
-
+          <Button fluid size="medium" onClick={onSubmit}>
+            {actionButtonContent || (
+              <FormattedMessage id="dashboardCardButton" />
+            )}
+          </Button>
+        </div>
+      ) : (
+        <Box
+          className={styles.submitContainer}
+          background="mint200"
+          borderColor="blue200"
+          borderRadius="large"
+          borderWidth="standard"
+          padding={3}
+        >
+          <Icon icon="checkmark" color="white" className={styles.checkIcon} />{' '}
+          <Text fontWeight="medium" as="span">
+            <FormattedMessage id="openedTaxSubmit" />
+          </Text>
+        </Box>
+      )}
     </Box>
   )
 }

@@ -1,11 +1,12 @@
 import React, { PropsWithChildren } from 'react'
-import { Text, Button, Icon } from '@island.is/island-ui/core'
+import { Text, Button, Icon, Box, ResponsiveSpace } from '@island.is/island-ui/core'
 import { FormattedMessage } from 'react-intl'
 
 type Props = {
   titleIcon?: string
   title: string
   isReadonly: boolean
+  marginTop?: ResponsiveSpace
 }
 
 const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
@@ -13,10 +14,11 @@ const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
   title,
   children,
   isReadonly,
+  marginTop,
 }) => {
   return (
     <>
-      <Text variant="h1" as="h1" marginY={3}>
+      <Text variant="h1" as="h1" marginY={3} marginTop={marginTop}>
         {titleIcon ? (
           <>
             <Icon icon="wallet" type="outline" color="blue400" />{' '}
@@ -27,11 +29,13 @@ const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
 
       {children}
 
-      {!isReadonly ? (
-        <Button variant="ghost" icon="add">
-          <FormattedMessage id="openedTaxAddRevenue" />
-        </Button>
-      ) : null}
+      <Box display="flex" justifyContent="flexEnd">
+        {!isReadonly ? (
+          <Button variant="ghost" icon="add">
+            <FormattedMessage id="openedTaxAddRevenue" />
+          </Button>
+        ) : null}
+      </Box>
     </>
   )
 }

@@ -20,7 +20,16 @@ export const actions = style({
   ...themeUtils.responsiveStyle({
     md: {
       justifyContent: 'space-between',
-      gridTemplateColumns: 'max-content auto',
+      gridTemplateColumns: '1fr auto',
+      alignItems: 'center',
+    },
+  }),
+})
+
+export const actionsSmall = style({
+  ...themeUtils.responsiveStyle({
+    md: {
+      gridTemplateColumns: '1fr',
       alignItems: 'center',
     },
   }),
