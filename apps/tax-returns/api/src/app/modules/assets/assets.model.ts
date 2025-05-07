@@ -90,21 +90,6 @@ export class Asset extends Model<
   declare type: AssetType;
 
   @Field(() => [AssetDescriptionItem])
-  // @Column({
-  //   type: DataType.JSONB,
-  //   allowNull: false,
-  //   defaultValue: [],
-  //   get() {
-  //     const rawValue = this.getDataValue('description');
-  //     console.log(Math.random())
-  //     console.log(rawValue)
-  //     return Array.isArray(rawValue) ? rawValue : [];
-  //   },
-  //   set(value: AssetDescriptionItem[]) {
-  //     this.setDataValue('description', Array.isArray(value) ? value : []);
-  //   },
-  // })
-  // declare description: AssetDescriptionItem[];
   @Column({
     type: DataType.JSON,
     allowNull: false,

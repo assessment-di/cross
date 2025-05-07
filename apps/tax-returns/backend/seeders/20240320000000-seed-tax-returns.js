@@ -118,48 +118,44 @@ module.exports = {
         {
           tax_return_id: taxReturn.id,
           type: 'INTEREST_EXPENSES',
-          description: JSON.stringify({
-            items: [
-              {
-                title: 'Mortgage Interest',
-                title_value: 'Annual Interest',
-                index: 1,
-                currency: 'ISK',
-                value: 1200000,
-              },
-              {
-                title: 'Mortgage Interest',
-                title_value: 'Interest Rate',
-                index: 2,
-                currency: 'ISK',
-                value: 4.5,
-              },
-            ],
-          }),
+          description: JSON.stringify([
+            {
+              title: 'Mortgage Interest',
+              title_value: 'Annual Interest',
+              index: 1,
+              currency: 'ISK',
+              value: 1200000,
+            },
+            {
+              title: 'Mortgage Interest',
+              title_value: 'Interest Rate',
+              index: 2,
+              currency: 'ISK',
+              value: 4.5,
+            },
+          ]),
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           tax_return_id: taxReturn.id,
           type: 'OTHER',
-          description: JSON.stringify({
-            items: [
-              {
-                title: 'Student Loan',
-                title_value: 'Remaining Balance',
-                index: 1,
-                currency: 'ISK',
-                value: 1500000,
-              },
-              {
-                title: 'Student Loan',
-                title_value: 'Interest Rate',
-                index: 2,
-                currency: 'ISK',
-                value: 3.2,
-              },
-            ],
-          }),
+          description: JSON.stringify([
+            {
+              title: 'Student Loan',
+              title_value: 'Remaining Balance',
+              index: 1,
+              currency: 'ISK',
+              value: 1500000,
+            },
+            {
+              title: 'Student Loan',
+              title_value: 'Interest Rate',
+              index: 2,
+              currency: 'ISK',
+              value: 3.2,
+            },
+          ]),
           created_at: new Date(),
           updated_at: new Date(),
         },

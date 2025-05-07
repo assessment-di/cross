@@ -39,7 +39,7 @@ input CreateAssetInput {
 }
 
 input CreateDebtInput {
-  description: DebtDescriptionDto!
+  description: [DebtDescriptionItemDto!]!
   type: DebtType!
 }
 
@@ -71,16 +71,12 @@ type Debt {
   updatedAt: DateTime!
 }
 
-input DebtDescriptionDto {
-  items: [DebtDescriptionItemDto!]!
-}
-
 type DebtDescriptionItem {
-  currency: String!
+  currency: String
   index: Float!
   title: String!
-  title_value: String!
-  value: Float!
+  title_value: String
+  value: Float
 }
 
 input DebtDescriptionItemDto {
@@ -146,7 +142,7 @@ input UpdateAssetWithIdInput {
 }
 
 input UpdateDebtWithIdInput {
-  description: DebtDescriptionDto
+  description: [DebtDescriptionItemDto!]
   id: Int!
   type: DebtType
 }

@@ -16,7 +16,6 @@ import {
   registerEnumType,
 } from '@nestjs/graphql';
 import { TaxReturn } from '../tax-return/tax-return.model';
-import { DebtDescriptionItemDto } from './dto/debt-description.dto';
 
 export enum DebtType {
   INTEREST_EXPENSES = 'INTEREST_EXPENSES',
@@ -28,28 +27,28 @@ registerEnumType(DebtType, {
 });
 
 @ObjectType()
-class DebtDescriptionItem {
+export class DebtDescriptionItem {
   @Field(() => String)
   declare title: string;
 
-  @Field(() => String)
-  declare title_value: string;
+  @Field(() => String, { nullable: true })
+  declare title_value?: string;
 
   @Field(() => Number)
   declare index: number;
 
-  @Field(() => String)
-  declare currency: string;
+  @Field(() => String, { nullable: true })
+  declare currency?: string;
 
-  @Field(() => Number)
-  declare value: number;
+  @Field(() => Number, { nullable: true })
+  declare value?: number;
 }
 
 export interface DebtAttributes {
   id: number;
   taxReturnId: number;
   type: DebtType;
-  description: DebtDescriptionItemDto[];
+  description: DebtDescriptionItem[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -96,7 +95,7 @@ export class Debt extends Model<
     allowNull: false,
     defaultValue: [],
   })
-  declare description: DebtDescriptionItemDto[];
+  declare description: DebtDescriptionItem[];
 
   @Field(() => Date)
   @CreatedAt
@@ -111,4 +110,4 @@ export class Debt extends Model<
     field: 'updated_at',
   })
   declare updatedAt: Date;
-} 
+}

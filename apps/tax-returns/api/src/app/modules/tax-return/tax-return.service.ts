@@ -87,7 +87,7 @@ export class TaxReturnService {
         await this.debtModel.bulkCreate(
           debts.map((debt) => ({
             ...debt,
-            description: debt.description.items,
+            description: debt.description,
             taxReturnId: taxReturn.id,
           })),
           { transaction },
@@ -187,7 +187,7 @@ export class TaxReturnService {
         await this.debtModel.bulkCreate(
           updateTaxReturnDto.createDebts.map((debt) => ({
             ...debt,
-            description: debt.description.items,
+            description: debt.description,
             taxReturnId: taxReturn.id,
           })),
           { transaction },
@@ -202,7 +202,7 @@ export class TaxReturnService {
             await this.debtModel.update(
               {
                 ...updateData,
-                description: updateData.description?.items,
+                description: updateData.description,
               },
               {
                 where: { id: debtId, taxReturnId: taxReturn.id },
