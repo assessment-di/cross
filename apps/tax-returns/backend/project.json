@@ -1,0 +1,52 @@
+{
+  "name": "tax-returns-backend",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tax-returns/backend/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/tax-returns/backend",
+        "main": "apps/tax-returns/backend/src/main.ts",
+        "tsConfig": "apps/tax-returns/backend/tsconfig.app.json",
+        "assets": ["apps/tax-returns/backend/src/assets"],
+        "webpackConfig": "apps/tax-returns/backend/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tax-returns-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tax-returns-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "tax-returns-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/tax-returns/backend/jest.config.ts"
+      }
+    }
+  }
+}
