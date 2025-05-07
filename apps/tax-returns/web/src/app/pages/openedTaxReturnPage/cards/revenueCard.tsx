@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useIntl } from 'react-intl'
 import { Revenue } from '../../../hooks/useTaxReturnData'
-import BaseCard from '../../../components/baseCard/baseCard'
+import BaseCard, { BaseCardProps } from '../../../components/baseCard/baseCard'
 import BaseCardRowWithAction from '../../../components/baseCard/baseCardRowWithAction'
 
 const getTitleIdFromType = (type: Revenue['type']) => {
@@ -17,9 +17,9 @@ const getTitleIdFromType = (type: Revenue['type']) => {
   }
 }
 
-type Props = Revenue & {}
+type Props = Revenue & BaseCardProps
 
-const RevenueCard: React.FC<Props> = ({ type, description, amount }) => {
+const RevenueCard: React.FC<Props> = ({ type, description, amount, isReadonly }) => {
   const { formatMessage } = useIntl()
 
   const title = useMemo(() => {
@@ -28,7 +28,7 @@ const RevenueCard: React.FC<Props> = ({ type, description, amount }) => {
 
   return (
     <BaseCard title={title}>
-      <BaseCardRowWithAction title={description} value={amount} />
+      <BaseCardRowWithAction title={description} value={amount} isReadonly={isReadonly} />
     </BaseCard>
   )
 }

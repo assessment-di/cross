@@ -1,9 +1,10 @@
 import React, { useContext, ReactNode } from 'react'
-import { Text, Box, Button, Divider } from '@island.is/island-ui/core'
+import { Text, Box, Button, Divider, Icon } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { LocaleContext } from '../../../i18n/LocaleContext'
 import * as styles from './taxReturnCard.css'
 import TaxReturnCardRow from './taxReturnCardRow'
+import { checkIcon } from './taxReturnCard.css'
 
 type Props = {
   title: ReactNode | string
@@ -11,15 +12,19 @@ type Props = {
   totalPaid: number
   taxReturn: number
   lastUpdateDate: Date
+  isSubmitted?: boolean
+  onSubmit?: () => void
 }
 
 const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
-  title,
-  totalPaid,
-  taxReturn,
-  lastUpdateDate = new Date(),
-  actionButtonContent,
-}) => {
+                                                                   title,
+                                                                   totalPaid,
+                                                                   taxReturn,
+                                                                   lastUpdateDate = new Date(),
+                                                                   actionButtonContent,
+                                                                   isSubmitted,
+                                                                   onSubmit
+                                                                 }) => {
   const { locale } = useContext(LocaleContext)
   const lastUpdate = lastUpdateDate.toLocaleString(locale, { timeZone: 'UTC' })
   const { formatMessage } = useIntl()
@@ -51,15 +56,33 @@ const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
 
       <Divider />
 
-      <div className={styles.actions}>
-        <Text textAlign={'center'}>
-          <FormattedMessage id="dashboardCardUpdate" /> {lastUpdate}
-        </Text>
+      {
+        !isSubmitted ? (
+          <div className={styles.actions}>
+            <Text textAlign={'center'}>
+              <FormattedMessage id="dashboardCardUpdate" /> {lastUpdate}
+            </Text>
 
-        <Button fluid size="medium">
-          {actionButtonContent || <FormattedMessage id="dashboardCardButton" />}
-        </Button>
-      </div>
+            <Button fluid size="medium" onClick={onSubmit}>
+              {actionButtonContent || <FormattedMessage id="dashboardCardButton" />}
+            </Button>
+          </div>
+        ) :
+          <Box
+            className={styles.submitContainer}
+            background="mint200"
+            borderColor="blue200"
+            borderRadius="large"
+            borderWidth="standard"
+            padding={3}
+          >
+            <Icon icon="checkmark" color="white" className={styles.checkIcon} />{' '}
+            <Text fontWeight="medium" as="span">
+              <FormattedMessage id="openedTaxSubmit" />
+            </Text>
+          </Box>
+      }
+
     </Box>
   )
 }

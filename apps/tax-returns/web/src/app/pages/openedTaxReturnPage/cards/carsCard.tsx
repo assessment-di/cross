@@ -2,15 +2,15 @@ import React, { Fragment } from 'react'
 import { Divider } from '@island.is/island-ui/core'
 import { useIntl } from 'react-intl'
 import { Car } from '../../../hooks/useTaxReturnData'
-import BaseCard from '../../../components/baseCard/baseCard'
+import BaseCard, { BaseCardProps } from '../../../components/baseCard/baseCard'
 import BaseCardRowWithAction from '../../../components/baseCard/baseCardRowWithAction'
 import BaseCardRowSimple from '../../../components/baseCard/baseCardRowSimple'
 
-type Props = {
+type Props = BaseCardProps & {
   cars: Car[]
 }
 
-const CarsCard: React.FC<Props> = ({ cars }) => {
+const CarsCard: React.FC<Props> = ({ cars, isReadonly }) => {
   const { formatMessage } = useIntl()
 
   return (
@@ -20,7 +20,7 @@ const CarsCard: React.FC<Props> = ({ cars }) => {
           {index > 0 ? <Divider /> : null}
           <BaseCardRowSimple title={formatMessage({ id: "openedTaxCard6Row1" })} value={carNumber} />
           <BaseCardRowSimple title={formatMessage({ id: "openedTaxCard6Row3" })} value={year} />
-          <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard6Row55" })} value={estimatedValue} />
+          <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard6Row55" })} value={estimatedValue} isReadonly={isReadonly} />
         </Fragment>
       ))}
     </BaseCard>

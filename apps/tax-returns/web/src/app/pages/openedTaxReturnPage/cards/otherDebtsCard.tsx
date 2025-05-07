@@ -2,14 +2,14 @@ import React, { Fragment } from 'react'
 import { Text, Divider } from '@island.is/island-ui/core'
 import { useIntl } from 'react-intl'
 import { OtherDebt } from '../../../hooks/useTaxReturnData'
-import BaseCard from '../../../components/baseCard/baseCard'
+import BaseCard, { BaseCardProps } from '../../../components/baseCard/baseCard'
 import BaseCardRowWithAction from '../../../components/baseCard/baseCardRowWithAction'
 
-type Props = {
+type Props = BaseCardProps & {
   otherDebts: OtherDebt[]
 }
 
-const OtherDebtsCard: React.FC<Props> = ({ otherDebts }) => {
+const OtherDebtsCard: React.FC<Props> = ({ otherDebts, isReadonly }) => {
   const { formatMessage } = useIntl()
 
   return (
@@ -21,8 +21,8 @@ const OtherDebtsCard: React.FC<Props> = ({ otherDebts }) => {
             <Text marginY={3}>
               {description}
             </Text>
-            <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard8Row3" })} value={interestExpenses} />
-            <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard8Row4" })} value={remainingDebt} />
+            <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard8Row3" })} value={interestExpenses} isReadonly={isReadonly} />
+            <BaseCardRowWithAction title={formatMessage({ id: "openedTaxCard8Row4" })} value={remainingDebt} isReadonly={isReadonly} />
           </Fragment>
         ),
       )}

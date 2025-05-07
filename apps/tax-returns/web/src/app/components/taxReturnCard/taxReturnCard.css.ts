@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { themeUtils } from '@island.is/island-ui/theme'
+import { themeUtils, theme } from '@island.is/island-ui/theme'
 
 export const container = style({
   display: 'grid',
@@ -24,4 +24,18 @@ export const actions = style({
       alignItems: 'center',
     },
   }),
+})
+
+export const submitContainer = style({
+  display: 'grid',
+  gridTemplateColumns: "auto auto",
+  justifyContent: 'center',
+  marginTop: 24,
+  textAlign: 'center',
+  gap: 24,
+})
+
+export const checkIcon = style({
+  borderRadius: '50%',
+  backgroundColor: theme.color.mint400,
 })
