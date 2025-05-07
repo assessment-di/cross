@@ -16,7 +16,6 @@ import {
   registerEnumType,
 } from '@nestjs/graphql';
 import { TaxReturn } from '../tax-return/tax-return.model';
-import { AssetDescriptionItemDto } from './dto/asset-description.dto';
 
 export enum AssetType {
   REAL_ESTATE = 'REAL_ESTATE',
@@ -28,28 +27,28 @@ registerEnumType(AssetType, {
 });
 
 @ObjectType()
-class AssetDescriptionItem {
+export class AssetDescriptionItem {
   @Field(() => String)
   declare title: string;
 
-  @Field(() => String)
-  declare title_value: string;
+  @Field(() => String, { nullable: true })
+  declare title_value?: string;
 
   @Field(() => Number)
   declare index: number;
 
-  @Field(() => String)
-  declare currency: string;
+  @Field(() => String, { nullable: true })
+  declare currency?: string;
 
-  @Field(() => Number)
-  declare value: number;
+  @Field(() => Number, { nullable: true })
+  declare value?: number;
 }
 
 export interface AssetAttributes {
   id: number;
   taxReturnId: number;
   type: AssetType;
-  description: AssetDescriptionItemDto[];
+  description: AssetDescriptionItem[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -91,12 +90,27 @@ export class Asset extends Model<
   declare type: AssetType;
 
   @Field(() => [AssetDescriptionItem])
+  // @Column({
+  //   type: DataType.JSONB,
+  //   allowNull: false,
+  //   defaultValue: [],
+  //   get() {
+  //     const rawValue = this.getDataValue('description');
+  //     console.log(Math.random())
+  //     console.log(rawValue)
+  //     return Array.isArray(rawValue) ? rawValue : [];
+  //   },
+  //   set(value: AssetDescriptionItem[]) {
+  //     this.setDataValue('description', Array.isArray(value) ? value : []);
+  //   },
+  // })
+  // declare description: AssetDescriptionItem[];
   @Column({
     type: DataType.JSON,
     allowNull: false,
     defaultValue: [],
   })
-  declare description: AssetDescriptionItemDto[];
+  declare description: AssetDescriptionItem[];
 
   @Field(() => Date)
   @CreatedAt
@@ -111,4 +125,4 @@ export class Asset extends Model<
     field: 'updated_at',
   })
   declare updatedAt: Date;
-} 
+}

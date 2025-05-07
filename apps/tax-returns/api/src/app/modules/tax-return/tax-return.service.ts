@@ -75,7 +75,7 @@ export class TaxReturnService {
         await this.assetModel.bulkCreate(
           assets.map((asset) => ({
             ...asset,
-            description: asset.description.items,
+            description: asset.description,
             taxReturnId: taxReturn.id,
           })),
           { transaction },
@@ -133,7 +133,7 @@ export class TaxReturnService {
         await this.assetModel.bulkCreate(
           updateTaxReturnDto.createAssets.map((asset) => ({
             ...asset,
-            description: asset.description.items,
+            description: asset.description,
             taxReturnId: taxReturn.id,
           })),
           { transaction },
@@ -148,7 +148,7 @@ export class TaxReturnService {
             await this.assetModel.update(
               {
                 ...updateData,
-                description: updateData.description?.items,
+                description: updateData.description,
               },
               {
                 where: { id: assetId, taxReturnId: taxReturn.id },

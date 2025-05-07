@@ -1,6 +1,5 @@
 import { Field, Float, InputType, Int } from '@nestjs/graphql';
-import { IsArray, IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export enum AssetDescriptionCurrency {
   ISK = 'ISK',
@@ -32,13 +31,4 @@ export class AssetDescriptionItemDto {
   @IsNumber()
   @IsOptional()
   declare value?: number;
-}
-
-@InputType()
-export class AssetDescriptionDto {
-  @Field(() => [AssetDescriptionItemDto])
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => AssetDescriptionItemDto)
-  declare items: AssetDescriptionItemDto[];
 }

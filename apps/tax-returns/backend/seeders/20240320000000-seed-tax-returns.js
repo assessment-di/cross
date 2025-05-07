@@ -65,48 +65,44 @@ module.exports = {
         {
           tax_return_id: taxReturn.id,
           type: 'REAL_ESTATE',
-          description: JSON.stringify({
-            items: [
-              {
-                title: 'Apartment in Reykjavik',
-                title_value: 'Property Value',
-                index: 1,
-                currency: 'ISK',
-                value: 45000000,
-              },
-              {
-                title: 'Apartment in Reykjavik',
-                title_value: 'Mortgage',
-                index: 2,
-                currency: 'ISK',
-                value: 30000000,
-              },
-            ],
-          }),
+          description: JSON.stringify([
+            {
+              title: 'Apartment in Reykjavik',
+              title_value: 'Property Value',
+              index: 1,
+              currency: 'ISK',
+              value: 45000000,
+            },
+            {
+              title: 'Apartment in Reykjavik',
+              title_value: 'Mortgage',
+              index: 2,
+              currency: 'ISK',
+              value: 30000000,
+            },
+          ]),
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           tax_return_id: taxReturn.id,
           type: 'CARS',
-          description: JSON.stringify({
-            items: [
-              {
-                title: 'Toyota Camry',
-                title_value: 'Purchase Price',
-                index: 1,
-                currency: 'ISK',
-                value: 3500000,
-              },
-              {
-                title: 'Toyota Camry',
-                title_value: 'Loan Amount',
-                index: 2,
-                currency: 'ISK',
-                value: 2500000,
-              },
-            ],
-          }),
+          description: JSON.stringify([
+            {
+              title: 'Toyota Camry',
+              title_value: 'Purchase Price',
+              index: 1,
+              currency: 'ISK',
+              value: 3500000,
+            },
+            {
+              title: 'Toyota Camry',
+              title_value: 'Loan Amount',
+              index: 2,
+              currency: 'ISK',
+              value: 2500000,
+            },
+          ]),
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -122,4 +118,4 @@ module.exports = {
     await queryInterface.bulkDelete('revenues', null, {});
     await queryInterface.bulkDelete('tax_returns', null, {});
   },
-}; 
+};

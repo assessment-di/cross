@@ -12,16 +12,12 @@ type Asset {
   updatedAt: DateTime!
 }
 
-input AssetDescriptionDto {
-  items: [AssetDescriptionItemDto!]!
-}
-
 type AssetDescriptionItem {
-  currency: String!
+  currency: String
   index: Float!
   title: String!
-  title_value: String!
-  value: Float!
+  title_value: String
+  value: Float
 }
 
 input AssetDescriptionItemDto {
@@ -38,7 +34,7 @@ enum AssetType {
 }
 
 input CreateAssetInput {
-  description: AssetDescriptionDto!
+  description: [AssetDescriptionItemDto!]!
   type: AssetType!
 }
 
@@ -102,7 +98,7 @@ type TaxReturn {
 }
 
 input UpdateAssetWithIdInput {
-  description: AssetDescriptionDto
+  description: [AssetDescriptionItemDto!]
   id: Int!
   type: AssetType
 }
