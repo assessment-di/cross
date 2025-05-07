@@ -2,18 +2,19 @@ import React from 'react'
 import {
   Text,
   Button,
-  Icon,
 } from '@island.is/island-ui/core'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import TaxReturnCard from '../../components/taxReturnCard/taxReturnCard'
-import { useTaxReturnData } from '../../hooks/useTaxReturnData'
-import RevenueCard from '../../components/revenueCard/revenueCard'
-import RealEstateCard from '../../components/realEstateCard/realEstateCard'
-import CarsCard from '../../components/carsCard/carsCard'
-import LoanCard from '../../components/loanCard/loanCard'
-import OtherDebtsCard from '../../components/otherDebtsCard/otherDebtsCard'
+import useTaxReturnData from '../../hooks/useTaxReturnData'
+import OpenedTaxReturnSectionBase from './openedTaxReturnSectionBase'
+import RevenueCard from './cards/revenueCard'
+import RealEstateCard from './cards/realEstateCard'
+import CarsCard from './cards/carsCard'
+import LoanCard from './cards/loanCard'
+import OtherDebtsCard from './cards/otherDebtsCard'
 
-function OpenedTaxReturn() {
+const OpenedTaxReturnPage: React.FC = () => {
+  const { formatMessage } = useIntl()
   const { data } = useTaxReturnData()
   const { revenues, debts, assets } = data
 
@@ -33,47 +34,31 @@ function OpenedTaxReturn() {
         }
       />
 
-      <Text variant="h1" as="h1" marginBottom={3}>
-        <Icon icon="wallet" type="outline" color="blue400" />{' '}
-        <FormattedMessage id="openedTaxTitle2" />
-      </Text>
+      <OpenedTaxReturnSectionBase title={formatMessage({ id: 'openedTaxTitle2' })} titleIcon="wallet">
+        {revenues.map((revenue) => (
+          <RevenueCard key={revenue.id} {...revenue} />
+        ))}
+      </OpenedTaxReturnSectionBase>
 
-      {revenues.map((revenue) => (
-        <RevenueCard key={revenue.id} {...revenue} />
-      ))}
-      <Button variant="ghost" icon="add">
-        <FormattedMessage id="openedTaxAddRevenue" />
-      </Button>
+      <OpenedTaxReturnSectionBase title={formatMessage({ id: 'openedTaxTitle3' })} titleIcon="home">
+        {assets.realEstate.map((realEstate) => (
+          <RealEstateCard key={realEstate.id} {...realEstate} />
+        ))}
 
-      <Text variant="h1" as="h1" marginY={3}>
-        <Icon icon="home" type="outline" color="blue400" />{' '}
-        <FormattedMessage id="openedTaxTitle3" />
-      </Text>
+        {assets.cars ? <CarsCard cars={assets.cars} /> : null}
+      </OpenedTaxReturnSectionBase>
 
-      {assets.realEstate.map((realEstate) => (
-        <RealEstateCard key={realEstate.id} {...realEstate} />
-      ))}
+      <OpenedTaxReturnSectionBase title={formatMessage({ id: 'openedTaxTitle4' })} titleIcon="receipt">
+        {debts.loan ? <LoanCard {...debts.loan} /> : null}
 
-      {assets.cars ? <CarsCard cars={assets.cars} /> : null}
+        <Button variant="ghost" icon="add">
+          <FormattedMessage id="openedTaxAddRevenue" />
+        </Button>
 
-      <Button variant="ghost" icon="add">
-        <FormattedMessage id="openedTaxAddRevenue" />
-      </Button>
-
-      <Text variant="h1" as="h1" marginY={3}>
-        <Icon icon="receipt" type="outline" color="blue400" />{' '}
-        <FormattedMessage id="openedTaxTitle4" />
-      </Text>
-
-      {debts.loan ? <LoanCard {...debts.loan} /> : null}
-
-      <Button variant="ghost" icon="add">
-        <FormattedMessage id="openedTaxAddRevenue" />
-      </Button>
-
-      {debts.otherDebts ? (
-        <OtherDebtsCard otherDebts={debts.otherDebts} {...debts.loan} />
-      ) : null}
+        {debts.otherDebts ? (
+          <OtherDebtsCard otherDebts={debts.otherDebts} {...debts.loan} />
+        ) : null}
+      </OpenedTaxReturnSectionBase>
 
       {/*<Box*/}
       {/*  display="flex"*/}
@@ -370,4 +355,4 @@ function OpenedTaxReturn() {
   )
 }
 
-export default OpenedTaxReturn
+export default OpenedTaxReturnPage

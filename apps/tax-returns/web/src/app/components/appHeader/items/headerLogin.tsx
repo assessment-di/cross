@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Hidden } from '@island.is/island-ui/core'
 import { FormattedMessage } from 'react-intl'
 
-function HeaderLogin() {
+const HeaderLogin: React.FC = () => {
   return (
     <>
       <Hidden above="md">

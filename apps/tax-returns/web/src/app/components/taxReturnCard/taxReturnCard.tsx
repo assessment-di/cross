@@ -13,13 +13,13 @@ type Props = {
   lastUpdateDate: Date
 }
 
-function TaxReturnCard({
+const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
   title,
   totalPaid,
   taxReturn,
   lastUpdateDate = new Date(),
   actionButtonContent,
-}: Props) {
+}) => {
   const { locale } = useContext(LocaleContext)
   const lastUpdate = lastUpdateDate.toLocaleString(locale, { timeZone: 'UTC' })
   const { formatMessage } = useIntl()

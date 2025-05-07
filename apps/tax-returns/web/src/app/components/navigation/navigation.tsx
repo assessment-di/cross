@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@island.is/island-ui/core'
 import { Link } from 'react-router-dom'
 
-function Navigation() {
+const Navigation: React.FC = () => {
   // const { formatMessage } = useIntl()
 
   // const breadcrumbItems = [

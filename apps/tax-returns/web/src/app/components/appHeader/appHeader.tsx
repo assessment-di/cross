@@ -2,7 +2,7 @@ import React from 'react'
 import { Header } from '@island.is/island-ui/core'
 import HeaderItems from './headerItems'
 
-function AppHeader() {
+const AppHeader: React.FC = () => {
   return <Header headerItems={<HeaderItems />} />
 }
 

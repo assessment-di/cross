@@ -146,7 +146,7 @@ const initialData: TaxReturnData = {
   },
 };
 
-export function useTaxReturnData() {
+function useTaxReturnData() {
   const [data, setData] = useState<TaxReturnData>(initialData);
 
   // Debt
@@ -290,3 +290,5 @@ export function useTaxReturnData() {
     removeRevenue,
   };
 }
+
+export default useTaxReturnData;

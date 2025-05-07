@@ -6,7 +6,7 @@ import HeaderLogin from './items/headerLogin'
 import HeaderLocale from './items/headerLocale'
 import HeaderMenu from './items/headerMenu'
 
-function HeaderItems() {
+const HeaderItems: React.FC = () => {
   return (
     <>
       <HeaderTitle />

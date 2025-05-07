@@ -6,7 +6,7 @@ type Props = {
   value: ReactNode | string
 }
 
-function TaxReturnCardRow({ title, value }: Props) {
+const TaxReturnCardRow: React.FC<React.PropsWithChildren<Props>> = ({ title, value }) => {
   return (
     <>
       <Text>{title}:</Text>

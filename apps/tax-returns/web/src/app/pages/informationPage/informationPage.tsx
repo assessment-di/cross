@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, ActionCard, Box, Input, Button } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
 
-function Information() {
+const InformationPage: React.FC = () => {
   const { formatMessage } = useIntl()
 
   return (
@@ -155,4 +155,4 @@ function Information() {
   )
 }
 
-export default Information
+export default InformationPage

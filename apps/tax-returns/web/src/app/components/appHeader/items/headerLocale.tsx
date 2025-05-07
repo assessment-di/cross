@@ -3,7 +3,7 @@ import { Button, Hidden } from '@island.is/island-ui/core'
 import { LocaleContext } from '../../../../i18n/LocaleContext'
 import { Locales, locales } from '../../../../i18n/I18n'
 
-function HeaderLocale() {
+const HeaderLocale: React.FC = () => {
   const { locale, setLocale } = useContext(LocaleContext)
 
   const switchLanguage = () => {

@@ -3,7 +3,7 @@ import { Text, ActionCard, Box } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
 import TaxReturnCard from '../../components/taxReturnCard/taxReturnCard'
 
-function Dashboard() {
+const DashboardPage: React.FC = () => {
   const { formatMessage } = useIntl()
 
   const prevYear = new Date().getFullYear() - 1;
@@ -46,4 +46,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default DashboardPage

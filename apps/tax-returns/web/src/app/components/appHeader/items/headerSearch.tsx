@@ -2,7 +2,7 @@ import React from 'react'
 import { AsyncSearchInput, Hidden } from '@island.is/island-ui/core'
 import { useIntl } from 'react-intl'
 
-function HeaderSearch() {
+const HeaderSearch: React.FC = () => {
   const { formatMessage } = useIntl()
 
   return (
