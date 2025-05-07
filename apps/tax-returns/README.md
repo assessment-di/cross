@@ -112,7 +112,7 @@ The schema file at /schema/schema.gql will contain all your:
 
 Example of usage:
 ```bash
-mport { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 // Define your query
 const GET_TAX_RETURNS = gql`
   query GetTaxReturns {
@@ -144,4 +144,374 @@ function TaxReturnsList() {
     </ul>
   );
 }
+```
+
+All endpoints
+```bash
+// Example of fetching all
+const GET_TAX_RETURNS = gql`
+  query GetAllTaxReturns {
+    taxReturns {
+      id
+      userUuid
+      createdAt
+      updatedAt
+      revenues {
+        id
+        type
+        description
+        currency
+        value
+        createdAt
+        updatedAt
+      }
+      assets {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+      debts {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+    }
+  }
+`;
+const { loading, error, data } = useQuery(GET_TAX_RETURNS);
+
+// Example of fetching a specific tax return by ID
+const GET_TAX_RETURN_BY_ID = gql`
+  query GetTaxReturnById($id: Int!) {
+    taxReturn(id: $id) {
+      id
+      userUuid
+      createdAt
+      updatedAt
+      revenues {
+        id
+        type
+        description
+        currency
+        value
+        createdAt
+        updatedAt
+      }
+      assets {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+      debts {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+    }
+  }
+`;
+
+// Usage in a component
+const { loading, error, data } = useQuery(GET_TAX_RETURN_BY_ID, {
+  variables: { id: taxReturnId },
+});
+const taxReturn = data?.taxReturn;
+
+// Example of creating a new tax return
+const CREATE_TAX_RETURN = gql`
+  mutation CreateTaxReturn($input: CreateTaxReturnDto!) {
+    createTaxReturn(input: $input) {
+      id
+      userUuid
+      revenues {
+        id
+        type
+        description
+        currency
+        value
+      }
+      assets {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+      debts {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+    }
+  }
+`;
+
+// Usage in a component
+const [createTaxReturn, { data, loading, error }] = useMutation(CREATE_TAX_RETURN);
+
+// Function to handle form submission
+const handleSubmit = (formData) => {
+  createTaxReturn({
+    variables: {
+      input: {
+        revenues: [
+          {
+            type: "SALARY_AND_PAYMENTS",
+            description: "Monthly salary",
+            currency: "ISK",
+            value: 500000
+          },
+          {
+            type: "VEHICLE_ALLOWANCE",
+            description: "Car allowance",
+            currency: "ISK",
+            value: 50000
+          }
+        ],
+        assets: [
+          {
+            type: "REAL_ESTATE",
+            description: [
+              {
+                title: "Property Address",
+                title_value: "123 Main St",
+                index: 1,
+                currency: "ISK",
+                value: 1000000
+              },
+              {
+                title: "Property Size",
+                title_value: "150 sqm",
+                index: 2,
+                currency: "ISK",
+                value: 500000
+              }
+            ]
+          },
+          {
+            type: "CARS",
+            description: [
+              {
+                title: "Car Model",
+                title_value: "Toyota Camry",
+                index: 1,
+                currency: "ISK",
+                value: 3000000
+              }
+            ]
+          }
+        ],
+        debts: [
+          {
+            type: "INTEREST_EXPENSES",
+            description: [
+              {
+                title: "Purchase year",
+                title_value: "2021",
+                index: 1
+              },
+              {
+                title: "Total payments for the year",
+                index: 2,
+                currency: "ISK",
+                value: 100000
+              }
+            ]
+          }
+        ]
+      }
+    }
+  });
+};
+
+// In your component
+if (loading) return 'Submitting...';
+if (error) return `Submission error! ${error.message}`;
+
+// Example of updating an existing tax return
+const UPDATE_TAX_RETURN = gql`
+  mutation UpdateTaxReturn($id: ID!, $input: UpdateTaxReturnDto!) {
+    updateTaxReturn(id: $id, input: $input) {
+      id
+      userUuid
+      revenues {
+        id
+        type
+        description
+        currency
+        value
+      }
+      assets {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+      debts {
+        id
+        type
+        description {
+          title
+          title_value
+          index
+          currency
+          value
+        }
+      }
+    }
+  }
+`;
+
+// Usage in a component
+const [updateTaxReturn, { data, loading, error }] = useMutation(UPDATE_TAX_RETURN);
+
+// Function to handle form submission for update
+const handleUpdate = (formData) => {
+  updateTaxReturn({
+    variables: {
+      id: "3",
+      input: {
+        createRevenues: [
+          {
+            type: "PENSION_PAYMENTS",
+            description: "Pension contribution",
+            currency: "ISK",
+            value: 75000
+          }
+        ],
+        updateRevenues: [
+          {
+            id: 2,
+            type: "PENSION_PAYMENTS",
+            value: 350000,
+            description: "Updated monthly salary"
+          }
+        ],
+        deleteRevenueIds: [12],
+        createAssets: [
+          {
+            type: "REAL_ESTATE",
+            description: [
+              {
+                title: "New Property",
+                title_value: "456 Oak St",
+                index: 1,
+                currency: "ISK",
+                value: 2000000
+              }
+            ]
+          }
+        ],
+        updateAssets: [
+          {
+            id: 13,
+            type: "REAL_ESTATE",
+            description: [
+              {
+                title: "Updated Property",
+                title_value: "789 Pine St",
+                index: 2,
+                currency: "ISK",
+                value: 1500000
+              }
+            ]
+          }
+        ],
+        deleteAssetIds: [14],
+        createDebts: [
+          {
+            type: "INTEREST_EXPENSES",
+            description: [
+              {
+                title: "New Property",
+                title_value: "456 Oak St",
+                index: 1,
+                currency: "ISK",
+                value: 2000000
+              }
+            ]
+          }
+        ],
+        updateDebts: [
+          {
+            id: 13,
+            type: "INTEREST_EXPENSES",
+            description: [
+              {
+                title: "Updated Property",
+                title_value: "789 Pine St",
+                index: 2,
+                currency: "ISK",
+                value: 1500000
+              }
+            ]
+          }
+        ],
+        deleteDebtIds: [6]
+      }
+    }
+  });
+};
+
+// In your component
+if (loading) return 'Updating...';
+if (error) return `Update error! ${error.message}`;
+
+// Example of deleting a tax return
+const DELETE_TAX_RETURN = gql`
+  mutation DeleteTaxReturn($id: ID!) {
+    removeTaxReturn(id: $id)
+  }
+`;
+
+// Usage in a component
+const [deleteTaxReturn, { data, loading, error }] = useMutation(DELETE_TAX_RETURN);
+
+// Function to handle tax return deletion
+const handleDelete = (taxReturnId) => {
+  deleteTaxReturn({
+    variables: {
+      id: taxReturnId
+    }
+  });
+};
 ```
