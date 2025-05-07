@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { TaxReturn } from './tax-return.model';
 import { CreateTaxReturnDto } from './dto/create-tax-return.dto';
 import { Revenue } from '../revenue/revenue.model';
+import { Asset } from '../assets/assets.model';
 import { UpdateTaxReturnDto } from './dto/update-tax-return.dto';
 import { Transaction } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
@@ -18,13 +19,38 @@ export class TaxReturnService {
     private taxReturnModel: typeof TaxReturn,
     @InjectModel(Revenue)
     private revenueModel: typeof Revenue,
+    @InjectModel(Asset)
+    private assetModel: typeof Asset,
     private sequelize: Sequelize,
   ) {}
+
+  async findAll(userUuid: string): Promise<TaxReturn[]> {
+    return this.taxReturnModel.findAll({
+      // TODO for demonstration purposes, uncomment this line when implementing real authentication and real userUuid comes from the authenticated user
+      // where: { userUuid },
+      include: [Revenue, Asset],
+    });
+  }
+
+  async findOne(id: number, transaction?: Transaction): Promise<TaxReturn> {
+    const taxReturn = await this.taxReturnModel.findByPk(id, {
+      include: [Revenue, Asset],
+      transaction,
+    });
+
+    if (!taxReturn) {
+      throw new NotFoundException(`Tax return with ID ${id} not found`);
+    }
+
+    return taxReturn;
+  }
+
+
 
   async create(
     createTaxReturnDto: CreateTaxReturnWithUserUuidDto,
   ): Promise<TaxReturn> {
-    const { revenues, ...taxReturnData } = createTaxReturnDto;
+    const { revenues, assets, ...taxReturnData } = createTaxReturnDto;
 
     return this.sequelize.transaction(async (transaction) => {
       const taxReturn = await this.taxReturnModel.create(taxReturnData, {
@@ -45,29 +71,19 @@ export class TaxReturnService {
         );
       }
 
+      if (assets?.length) {
+        await this.assetModel.bulkCreate(
+          assets.map((asset) => ({
+            ...asset,
+            description: asset.description.items,
+            taxReturnId: taxReturn.id,
+          })),
+          { transaction },
+        );
+      }
+
       return this.findOne(taxReturn.id, transaction);
     });
-  }
-
-  async findAll(userUuid: string): Promise<TaxReturn[]> {
-    return this.taxReturnModel.findAll({
-      // TODO for demonstration purposes, uncomment this line when implementing real authentication and real userUuid comes from the authenticated user
-      // where: { userUuid },
-      include: [Revenue],
-    });
-  }
-
-  async findOne(id: number, transaction?: Transaction): Promise<TaxReturn> {
-    const taxReturn = await this.taxReturnModel.findByPk(id, {
-      include: [Revenue],
-      transaction,
-    });
-
-    if (!taxReturn) {
-      throw new NotFoundException(`Tax return with ID ${id} not found`);
-    }
-
-    return taxReturn;
   }
 
   async update(
@@ -106,6 +122,48 @@ export class TaxReturnService {
         await this.revenueModel.destroy({
           where: {
             id: updateTaxReturnDto.deleteRevenueIds,
+            taxReturnId: taxReturn.id,
+          },
+          transaction,
+        });
+      }
+
+      // Create new assets
+      if (updateTaxReturnDto.createAssets?.length) {
+        await this.assetModel.bulkCreate(
+          updateTaxReturnDto.createAssets.map((asset) => ({
+            ...asset,
+            description: asset.description.items,
+            taxReturnId: taxReturn.id,
+          })),
+          { transaction },
+        );
+      }
+
+      // Update existing assets
+      if (updateTaxReturnDto.updateAssets?.length) {
+        await Promise.all(
+          updateTaxReturnDto.updateAssets.map(async (asset) => {
+            const { id: assetId, ...updateData } = asset;
+            await this.assetModel.update(
+              {
+                ...updateData,
+                description: updateData.description?.items,
+              },
+              {
+                where: { id: assetId, taxReturnId: taxReturn.id },
+                transaction,
+              },
+            );
+          }),
+        );
+      }
+
+      // Delete assets
+      if (updateTaxReturnDto.deleteAssetIds?.length) {
+        await this.assetModel.destroy({
+          where: {
+            id: updateTaxReturnDto.deleteAssetIds,
             taxReturnId: taxReturn.id,
           },
           transaction,

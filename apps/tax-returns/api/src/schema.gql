@@ -2,6 +2,46 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Asset {
+  createdAt: DateTime!
+  description: [AssetDescriptionItem!]!
+  id: ID!
+  taxReturn: TaxReturn!
+  taxReturnId: ID!
+  type: AssetType!
+  updatedAt: DateTime!
+}
+
+input AssetDescriptionDto {
+  items: [AssetDescriptionItemDto!]!
+}
+
+type AssetDescriptionItem {
+  currency: String!
+  index: Float!
+  title: String!
+  title_value: String!
+  value: Float!
+}
+
+input AssetDescriptionItemDto {
+  currency: String
+  index: Int!
+  title: String!
+  title_value: String
+  value: Float
+}
+
+enum AssetType {
+  CARS
+  REAL_ESTATE
+}
+
+input CreateAssetInput {
+  description: AssetDescriptionDto!
+  type: AssetType!
+}
+
 input CreateRevenueInput {
   currency: RevenueCurrency!
   description: String
@@ -10,6 +50,7 @@ input CreateRevenueInput {
 }
 
 input CreateTaxReturnDto {
+  assets: [CreateAssetInput!]
   revenues: [CreateRevenueInput!]
 }
 
@@ -52,11 +93,18 @@ enum RevenueType {
 }
 
 type TaxReturn {
+  assets: [Asset!]
   createdAt: DateTime!
   id: ID!
   revenues: [Revenue!]
   updatedAt: DateTime!
   userUuid: String!
+}
+
+input UpdateAssetWithIdInput {
+  description: AssetDescriptionDto
+  id: Int!
+  type: AssetType
 }
 
 input UpdateRevenueWithIdInput {
@@ -68,7 +116,10 @@ input UpdateRevenueWithIdInput {
 }
 
 input UpdateTaxReturnDto {
+  createAssets: [CreateAssetInput!]
   createRevenues: [CreateRevenueInput!]
+  deleteAssetIds: [Int!]
   deleteRevenueIds: [Int!]
+  updateAssets: [UpdateAssetWithIdInput!]
   updateRevenues: [UpdateRevenueWithIdInput!]
 }

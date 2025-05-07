@@ -57,10 +57,68 @@ module.exports = {
     }
 
     await queryInterface.bulkInsert('revenues', revenues);
+
+    // Create sample assets for each tax return
+    const assets = [];
+    for (const taxReturn of taxReturns) {
+      assets.push(
+        {
+          tax_return_id: taxReturn.id,
+          type: 'REAL_ESTATE',
+          description: JSON.stringify({
+            items: [
+              {
+                title: 'Apartment in Reykjavik',
+                title_value: 'Property Value',
+                index: 1,
+                currency: 'ISK',
+                value: 45000000,
+              },
+              {
+                title: 'Apartment in Reykjavik',
+                title_value: 'Mortgage',
+                index: 2,
+                currency: 'ISK',
+                value: 30000000,
+              },
+            ],
+          }),
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          tax_return_id: taxReturn.id,
+          type: 'CARS',
+          description: JSON.stringify({
+            items: [
+              {
+                title: 'Toyota Camry',
+                title_value: 'Purchase Price',
+                index: 1,
+                currency: 'ISK',
+                value: 3500000,
+              },
+              {
+                title: 'Toyota Camry',
+                title_value: 'Loan Amount',
+                index: 2,
+                currency: 'ISK',
+                value: 2500000,
+              },
+            ],
+          }),
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      );
+    }
+
+    await queryInterface.bulkInsert('assets', assets);
   },
 
   async down(queryInterface) {
     // Clean up the seeded data
+    await queryInterface.bulkDelete('assets', null, {});
     await queryInterface.bulkDelete('revenues', null, {});
     await queryInterface.bulkDelete('tax_returns', null, {});
   },
