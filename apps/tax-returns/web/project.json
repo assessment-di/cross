@@ -73,6 +73,13 @@
       "options": {
         "jestConfig": "apps/tax-returns/web/jest.config.ts"
       }
+    },
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/tax-returns-web"],
+      "options": {
+        "config": "apps/tax-returns/web/playwright.config.ts"
+      }
     }
   }
 }

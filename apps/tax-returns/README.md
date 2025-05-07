@@ -9,14 +9,21 @@ As soon as we get more user feedback and some more requirements (like SSR suppor
 
 ### Useful scripts
 
-In order to run:
-
+**In order to run dev mode:**
 ```
 nx serve tax-returns-web
 ```
 
-In order to build:
+**In order to run e2e tests:**
+```
+nx e2e tax-returns-web
+```
+or
+```
+HEADLESS=false yarn nx e2e tax-returns-web
+```
 
+**In order to build:**
 ```
 nx build tax-returns-web
 ```
