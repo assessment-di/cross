@@ -110,10 +110,68 @@ module.exports = {
     }
 
     await queryInterface.bulkInsert('assets', assets);
+
+    // Create sample debts for each tax return
+    const debts = [];
+    for (const taxReturn of taxReturns) {
+      debts.push(
+        {
+          tax_return_id: taxReturn.id,
+          type: 'INTEREST_EXPENSES',
+          description: JSON.stringify({
+            items: [
+              {
+                title: 'Mortgage Interest',
+                title_value: 'Annual Interest',
+                index: 1,
+                currency: 'ISK',
+                value: 1200000,
+              },
+              {
+                title: 'Mortgage Interest',
+                title_value: 'Interest Rate',
+                index: 2,
+                currency: 'ISK',
+                value: 4.5,
+              },
+            ],
+          }),
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          tax_return_id: taxReturn.id,
+          type: 'OTHER',
+          description: JSON.stringify({
+            items: [
+              {
+                title: 'Student Loan',
+                title_value: 'Remaining Balance',
+                index: 1,
+                currency: 'ISK',
+                value: 1500000,
+              },
+              {
+                title: 'Student Loan',
+                title_value: 'Interest Rate',
+                index: 2,
+                currency: 'ISK',
+                value: 3.2,
+              },
+            ],
+          }),
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      );
+    }
+
+    await queryInterface.bulkInsert('debts', debts);
   },
 
   async down(queryInterface) {
     // Clean up the seeded data
+    await queryInterface.bulkDelete('debts', null, {});
     await queryInterface.bulkDelete('assets', null, {});
     await queryInterface.bulkDelete('revenues', null, {});
     await queryInterface.bulkDelete('tax_returns', null, {});

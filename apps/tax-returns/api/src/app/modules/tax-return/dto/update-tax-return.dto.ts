@@ -3,6 +3,8 @@ import { CreateRevenueInput } from '../../revenue/dto/create-revenue.input';
 import { UpdateRevenueInput } from '../../revenue/dto/update-revenue.input';
 import { CreateAssetInput } from '../../assets/dto/create-asset.input';
 import { UpdateAssetInput } from '../../assets/dto/update-asset.input';
+import { CreateDebtInput } from '../../debts/dto/create-debt.input';
+import { UpdateDebtInput } from '../../debts/dto/update-debt.input';
 
 @InputType()
 export class UpdateTaxReturnDto {
@@ -23,6 +25,15 @@ export class UpdateTaxReturnDto {
 
   @Field(() => [Int], { nullable: true })
   deleteAssetIds?: number[];
+
+  @Field(() => [CreateDebtInput], { nullable: true })
+  createDebts?: CreateDebtInput[];
+
+  @Field(() => [UpdateDebtWithIdInput], { nullable: true })
+  updateDebts?: UpdateDebtWithIdInput[];
+
+  @Field(() => [Int], { nullable: true })
+  deleteDebtIds?: number[];
 }
 
 @InputType()
@@ -33,6 +44,12 @@ class UpdateRevenueWithIdInput extends UpdateRevenueInput {
 
 @InputType()
 class UpdateAssetWithIdInput extends UpdateAssetInput {
+  @Field(() => Int)
+  declare id: number;
+}
+
+@InputType()
+class UpdateDebtWithIdInput extends UpdateDebtInput {
   @Field(() => Int)
   declare id: number;
 }

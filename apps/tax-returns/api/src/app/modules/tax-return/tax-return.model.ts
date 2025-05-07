@@ -11,6 +11,7 @@ import { Optional } from 'sequelize/types';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Revenue } from '../revenue/revenue.model';
 import { Asset } from '../assets/assets.model';
+import { Debt } from '../debts/debts.model';
 
 export interface TaxReturnAttributes {
   id: number;
@@ -19,6 +20,7 @@ export interface TaxReturnAttributes {
   updatedAt: Date;
   revenues?: Revenue[];
   assets?: Asset[];
+  debts?: Debt[];
 }
 
 interface TaxReturnCreationAttributes
@@ -55,6 +57,10 @@ export class TaxReturn extends Model<
   @Field(() => [Asset], { nullable: true })
   @HasMany(() => Asset)
   declare assets: Asset[];
+
+  @Field(() => [Debt], { nullable: true })
+  @HasMany(() => Debt)
+  declare debts: Debt[];
 
   @Field(() => Date)
   @CreatedAt

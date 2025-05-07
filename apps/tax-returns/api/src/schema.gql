@@ -38,6 +38,11 @@ input CreateAssetInput {
   type: AssetType!
 }
 
+input CreateDebtInput {
+  description: DebtDescriptionDto!
+  type: DebtType!
+}
+
 input CreateRevenueInput {
   currency: RevenueCurrency!
   description: String
@@ -47,6 +52,7 @@ input CreateRevenueInput {
 
 input CreateTaxReturnDto {
   assets: [CreateAssetInput!]
+  debts: [CreateDebtInput!]
   revenues: [CreateRevenueInput!]
 }
 
@@ -54,6 +60,41 @@ input CreateTaxReturnDto {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type Debt {
+  createdAt: DateTime!
+  description: [DebtDescriptionItem!]!
+  id: ID!
+  taxReturn: TaxReturn!
+  taxReturnId: ID!
+  type: DebtType!
+  updatedAt: DateTime!
+}
+
+input DebtDescriptionDto {
+  items: [DebtDescriptionItemDto!]!
+}
+
+type DebtDescriptionItem {
+  currency: String!
+  index: Float!
+  title: String!
+  title_value: String!
+  value: Float!
+}
+
+input DebtDescriptionItemDto {
+  currency: String
+  index: Int!
+  title: String!
+  title_value: String
+  value: Float
+}
+
+enum DebtType {
+  INTEREST_EXPENSES
+  OTHER
+}
 
 type Mutation {
   createTaxReturn(input: CreateTaxReturnDto!): TaxReturn!
@@ -91,6 +132,7 @@ enum RevenueType {
 type TaxReturn {
   assets: [Asset!]
   createdAt: DateTime!
+  debts: [Debt!]
   id: ID!
   revenues: [Revenue!]
   updatedAt: DateTime!
@@ -103,6 +145,12 @@ input UpdateAssetWithIdInput {
   type: AssetType
 }
 
+input UpdateDebtWithIdInput {
+  description: DebtDescriptionDto
+  id: Int!
+  type: DebtType
+}
+
 input UpdateRevenueWithIdInput {
   currency: RevenueCurrency
   description: String
@@ -113,9 +161,12 @@ input UpdateRevenueWithIdInput {
 
 input UpdateTaxReturnDto {
   createAssets: [CreateAssetInput!]
+  createDebts: [CreateDebtInput!]
   createRevenues: [CreateRevenueInput!]
   deleteAssetIds: [Int!]
+  deleteDebtIds: [Int!]
   deleteRevenueIds: [Int!]
   updateAssets: [UpdateAssetWithIdInput!]
+  updateDebts: [UpdateDebtWithIdInput!]
   updateRevenues: [UpdateRevenueWithIdInput!]
 }

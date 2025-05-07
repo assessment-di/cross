@@ -1,6 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { CreateRevenueInput } from '../../revenue/dto/create-revenue.input';
 import { CreateAssetInput } from '../../assets/dto/create-asset.input';
+import { CreateDebtInput } from '../../debts/dto/create-debt.input';
 
 @InputType()
 export class CreateTaxReturnDto {
@@ -9,4 +10,7 @@ export class CreateTaxReturnDto {
 
   @Field(() => [CreateAssetInput], { nullable: true })
   assets?: CreateAssetInput[];
+
+  @Field(() => [CreateDebtInput], { nullable: true })
+  debts?: CreateDebtInput[];
 }
