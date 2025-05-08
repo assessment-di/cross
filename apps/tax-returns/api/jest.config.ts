@@ -8,4 +8,9 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../../coverage/apps/tax-returns/api',
+  setupFilesAfterEnv: ['<rootDir>/src/app/test/setup.ts'],
+  testTimeout: 10000,
+  maxWorkers: 1,
+  detectLeaks: false,
+  detectOpenHandles: true
 }
