@@ -31,7 +31,7 @@ const BaseCardRowWithAction: React.FC<React.PropsWithChildren<Props>> = ({ title
     <>
       <Text>{title}:</Text>
       <div className={styles.container}>
-        <Text color="roseTinted400" fontWeight="medium">
+        <Text color="blueberry400" fontWeight="medium">
           {value}
         </Text>
         {

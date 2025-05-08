@@ -13,6 +13,7 @@ type Props = {
   title: string
   isReadonly: boolean
   marginTop?: ResponsiveSpace
+  addBtnText: string
 }
 
 const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
@@ -21,13 +22,20 @@ const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
   children,
   isReadonly,
   marginTop,
+  addBtnText
 }) => {
+
   return (
     <>
       <Text variant="h2" as="h2" marginY={3} marginTop={marginTop}>
         {titleIcon ? (
           <>
-            <Icon icon="wallet" type="outline" color="blue400" />{' '}
+            <Icon
+              // @ts-ignore
+              icon={titleIcon}
+              type="outline"
+              color="blue400"
+            />{' '}
           </>
         ) : null}
         {title}
@@ -38,7 +46,7 @@ const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
       <Box display="flex" justifyContent="flexEnd">
         {!isReadonly ? (
           <Button variant="ghost" icon="add">
-            <FormattedMessage id="openedTaxAddRevenue" />
+            {addBtnText}
           </Button>
         ) : null}
       </Box>

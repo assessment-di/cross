@@ -28,12 +28,13 @@ const OpenedTaxReturnPage: React.FC = () => {
     editDebt,
   } = useTaxReturnData()
   const { revenues, debts, assets } = data
+  const lastYear = new Date().getFullYear() - 1;
 
   return (
     <div className={styles.container}>
       <div>
         <Text variant="h2" as="h1" marginY={3} marginTop={0}>
-          <FormattedMessage id="title" />
+          <FormattedMessage id="openedTaxTitle" /> {lastYear}
         </Text>
         <TaxReturnCard
           totalPaid={2808000}
@@ -59,6 +60,7 @@ const OpenedTaxReturnPage: React.FC = () => {
           titleIcon="wallet"
           isReadonly={isReadonly}
           marginTop={0}
+          addBtnText={formatMessage({ id: 'openedTaxAddRevenue' })}
         >
           {revenues.map((revenue) => (
             <RevenueCard
@@ -75,6 +77,7 @@ const OpenedTaxReturnPage: React.FC = () => {
           title={formatMessage({ id: 'openedTaxTitle3' })}
           titleIcon="home"
           isReadonly={isReadonly}
+          addBtnText={formatMessage({ id: 'openedTaxAddRevenue' })}
         >
           {assets.realEstate.map((realEstate) => (
             <RealEstateCard
@@ -100,6 +103,7 @@ const OpenedTaxReturnPage: React.FC = () => {
           title={formatMessage({ id: 'openedTaxTitle4' })}
           titleIcon="receipt"
           isReadonly={isReadonly}
+          addBtnText={formatMessage({ id: 'openedTaxAddDebt' })}
         >
           {debts.loan ? (
             <LoanCard
@@ -113,7 +117,7 @@ const OpenedTaxReturnPage: React.FC = () => {
           <Box display="flex" justifyContent="flexEnd">
             {!isReadonly ? (
               <Button variant="ghost" icon="add">
-                <FormattedMessage id="openedTaxAddRevenue" />
+                <FormattedMessage id="openedTaxAddDebt2" />
               </Button>
             ) : null}
           </Box>

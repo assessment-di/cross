@@ -4,7 +4,7 @@ import * as styles from './baseCard.css'
 
 export type BaseCardProps = {
   isReadonly: boolean
-  onRemove: (id?: string) => void
+  onRemove: (id?: string) => void,
 }
 
 type Props = {
