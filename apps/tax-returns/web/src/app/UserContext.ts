@@ -25,7 +25,7 @@ export const UserContext = createContext<{
   setLoading: () => {},
 })
 
-const MOCK_DELAY = 1200
+const MOCK_DELAY = 700
 
 export const useLoginMethods = () => {
   const { setIsAuthenticated, user, isAuthenticated, loading, setLoading } =

@@ -23,6 +23,10 @@ export const baseConfig = ({
       /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
       trace: process.env.CI ? 'on' : 'on-first-retry',
       headless: process.env.HEADLESS !== 'false',
+      launchOptions: {
+        slowMo: process.env.HEADLESS !== 'false' ? 0 : 200,
+      },
+      viewport: { width: 564, height: 728 },
     },
     /* Run your local dev server before starting the tests */
     webServer: {

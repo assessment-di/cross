@@ -18,15 +18,15 @@ type Props = {
 }
 
 const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
-                                                                   title,
-                                                                   totalPaid,
-                                                                   taxReturn,
-                                                                   lastUpdateDate = new Date(),
-                                                                   actionButtonContent,
-                                                                   isSubmitted,
-                                                                   onSubmit,
-                                                                   isSmall,
-                                                                 }) => {
+  title,
+  totalPaid,
+  taxReturn,
+  lastUpdateDate = new Date(),
+  actionButtonContent,
+  isSubmitted,
+  onSubmit,
+  isSmall,
+}) => {
   const { locale } = useContext(LocaleContext)
   const lastUpdate = lastUpdateDate.toLocaleString(locale, { timeZone: 'UTC' })
   const { formatMessage } = useIntl()
@@ -86,7 +86,7 @@ const TaxReturnCard: React.FC<React.PropsWithChildren<Props>> = ({
           padding={3}
         >
           <Icon icon="checkmark" color="white" className={styles.checkIcon} />{' '}
-          <Text fontWeight="medium" as="span">
+          <Text fontWeight="medium" as="span" dataTestId="submit-success-test">
             <FormattedMessage id="openedTaxSubmit" />
           </Text>
         </Box>
