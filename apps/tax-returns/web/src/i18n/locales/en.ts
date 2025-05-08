@@ -1,5 +1,5 @@
 export default {
-  title: 'Tax revenue 2025',
+  title: 'Tax return 2025',
   globalSearch: 'What are you looking for?',
   login: 'Login',
   logout: 'Logout',

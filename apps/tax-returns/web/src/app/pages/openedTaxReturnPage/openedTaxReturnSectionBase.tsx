@@ -1,5 +1,11 @@
 import React, { PropsWithChildren } from 'react'
-import { Text, Button, Icon, Box, ResponsiveSpace } from '@island.is/island-ui/core'
+import {
+  Text,
+  Button,
+  Icon,
+  Box,
+  ResponsiveSpace,
+} from '@island.is/island-ui/core'
 import { FormattedMessage } from 'react-intl'
 
 type Props = {
@@ -18,7 +24,7 @@ const OpenedTaxReturnSectionBase: React.FC<PropsWithChildren<Props>> = ({
 }) => {
   return (
     <>
-      <Text variant="h1" as="h1" marginY={3} marginTop={marginTop}>
+      <Text variant="h2" as="h2" marginY={3} marginTop={marginTop}>
         {titleIcon ? (
           <>
             <Icon icon="wallet" type="outline" color="blue400" />{' '}

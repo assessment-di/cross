@@ -32,6 +32,9 @@ const OpenedTaxReturnPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <div>
+        <Text variant="h2" as="h1" marginY={3} marginTop={0}>
+          <FormattedMessage id="title" />
+        </Text>
         <TaxReturnCard
           totalPaid={2808000}
           taxReturn={32227}

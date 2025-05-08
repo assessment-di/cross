@@ -8,7 +8,7 @@ export const container = style({
 
   ...themeUtils.responsiveStyle({
     lg: {
-      gridTemplateColumns: '350px 1fr 200px',
+      gridTemplateColumns: '350px 1fr 100px',
       gap: 24,
       marginLeft: '-100px',
     },
