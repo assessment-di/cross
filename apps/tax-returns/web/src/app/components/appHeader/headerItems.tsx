@@ -9,10 +9,12 @@ import HeaderMenu from './items/headerMenu'
 const HeaderItems: React.FC = () => {
   return (
     <>
-      <HeaderTitle />
+      <Hidden below="md">
+        <HeaderTitle />
+      </Hidden>
       <HeaderSearch />
       <HeaderLogin />
-      <Hidden above="xs">
+      <Hidden above="sm">
         <Button variant="utility" icon="notifications" iconType="outline" />
       </Hidden>
       <HeaderLocale />

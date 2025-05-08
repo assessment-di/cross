@@ -1,22 +1,30 @@
 export default {
-  title: 'Tax revenue 2025 – Jökull Þórðarson',
+  title: 'Tax revenue 2025',
   globalSearch: 'What are you looking for?',
   login: 'Login',
+  logout: 'Logout',
   menu: 'Menu',
   financeTitle: 'Finance & Taxes',
 
   informationTitle: 'Tax returns',
   informationCardTitle: 'Tax return 2025 still open',
   informationCardButton: 'Login to the tax return',
-  informationBodyText1: 'The National Archives of Iceland keeps tax returns of individuals and legal entities that have been submitted by tax offices around the country up until the year 2010. They contain various information about rights, such as pension rights, building reports, mortgage purchases, fund days and more. These sources are subject to access restrictions. See more details here about access to documents.',
-  informationBodyText2: 'In order to process tax returns, certain basic information must be available',
+  informationBodyText1:
+    'The National Archives of Iceland keeps tax returns of individuals and legal entities that have been submitted by tax offices around the country up until the year 2010. They contain various information about rights, such as pension rights, building reports, mortgage purchases, fund days and more. These sources are subject to access restrictions. See more details here about access to documents.',
+  informationBodyText2:
+    'In order to process tax returns, certain basic information must be available',
   informationBodyPoint1: 'Name and date of birth of the person who declares',
-  informationBodyPoint2: 'In which municipality the person concerned was domiciled',
+  informationBodyPoint2:
+    'In which municipality the person concerned was domiciled',
   informationBodyPoint3: 'Tax year',
-  informationBodyPoint4: 'Name and date of birth of the spouse in the case of co-taxation',
-  informationBodyText3: 'Tax returns that were submitted in electronic form are processed by the Iceland Revenue and Customs.',
-  informationBodyText4: 'Tax returns submitted on paper have mostly been submitted to the National Archives for preservation. The main exceptions are',
-  informationBodyPoint5: 'Tax returns from Reykjavík up to 1981 are archived in the Reykjavík City Archives.',
+  informationBodyPoint4:
+    'Name and date of birth of the spouse in the case of co-taxation',
+  informationBodyText3:
+    'Tax returns that were submitted in electronic form are processed by the Iceland Revenue and Customs.',
+  informationBodyText4:
+    'Tax returns submitted on paper have mostly been submitted to the National Archives for preservation. The main exceptions are',
+  informationBodyPoint5:
+    'Tax returns from Reykjavík up to 1981 are archived in the Reykjavík City Archives.',
   informationBodyPoint6: 'Tax returns from the South after 1960.',
   informationBodyPoint7: 'Tax returns from the West Fjords after 1984.',
   informationFormTitle: 'Inquery about tax return',
@@ -57,7 +65,8 @@ export default {
   openedTaxCard3Title: 'Vehicle allowance. Daily allowance. Benefits',
   // openedTaxCard3Row1: 'Daily allowance',
 
-  openedTaxCard4Title: 'Pension payments. Payments from the Social Security Administration. Other benefits, grants, etc.',
+  openedTaxCard4Title:
+    'Pension payments. Payments from the Social Security Administration. Other benefits, grants, etc.',
   openedTaxCard4Row1: 'Norðurljós Software ehf',
   // openedTaxCard4Row11: 'Sports grant',
   openedTaxCard4Row2: 'VR',

@@ -8,10 +8,11 @@ import OpenedTaxReturnPage from './pages/openedTaxReturnPage/openedTaxReturnPage
 import AppHeader from './components/appHeader/appHeader'
 import * as styles from './App.css'
 import Page from './components/page/Page'
+import AuthProvider from './Auth'
 
 const App: React.FC = () => {
   return (
-    <>
+    <AuthProvider>
       <Page>
         <GridContainer className={styles.container}>
           <AppHeader />
@@ -22,13 +23,16 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<InformationPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/opened-tax-return" element={<OpenedTaxReturnPage />} />
+              <Route
+                path="/opened-tax-return"
+                element={<OpenedTaxReturnPage />}
+              />
             </Routes>
           </Box>
         </Box>
       </Page>
       <Footer />
-    </>
+    </AuthProvider>
   )
 }
 

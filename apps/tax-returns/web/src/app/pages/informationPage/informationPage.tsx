@@ -1,13 +1,15 @@
 import React from 'react'
 import { Text, ActionCard, Box, Input, Button } from '@island.is/island-ui/core'
 import { FormattedMessage, useIntl } from 'react-intl'
+import { useLoginMethods } from '../../UserContext'
 
 const InformationPage: React.FC = () => {
   const { formatMessage } = useIntl()
+  const { login } = useLoginMethods()
 
   return (
     <>
-      <Text variant="h1" as="h1">
+      <Text variant="h1" as="h1" marginBottom="p3">
         <FormattedMessage id="informationTitle" />
       </Text>
       <ActionCard
@@ -15,6 +17,9 @@ const InformationPage: React.FC = () => {
         cta={{
           size: 'small',
           label: formatMessage({ id: 'informationCardButton' }),
+          onClick: async () => {
+            login()
+          },
         }}
       />
       <Text variant="intro" as="p" marginY={2}>

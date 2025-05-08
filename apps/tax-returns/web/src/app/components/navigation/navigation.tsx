@@ -1,67 +1,43 @@
 import React from 'react'
-import { Button } from '@island.is/island-ui/core'
-import { Link } from 'react-router-dom'
+import { Breadcrumbs } from '@island.is/island-ui/core'
+import { useIntl } from 'react-intl'
+import { useLocation } from 'react-router-dom'
 
-const Navigation: React.FC = () => {
-  // const { formatMessage } = useIntl()
-
-  // const breadcrumbItems = [
-  //   {
-  //     title: 'Ísland.is',
-  //     // href: linkResolver('homepage', [], locale).href,
-  //   },
-  //   {
-  //     title: formatMessage({ id: 'financeTitle' }),
-  //     // href: baseUrl,
-  //     isTag: true,
-  //   },
-  // ]
-
-  return (
-    <>
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">
-              <Button variant="text" preTextIcon="arrowBack">
-                Information
-              </Button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard">
-              <Button variant="text" preTextIcon="arrowBack">
-                Dashboard
-              </Button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/opened-tax-return">
-              <Button variant="text" preTextIcon="arrowBack">
-                Opened Tax Return
-              </Button>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </>
-  )
-    // {/*<ArrowLink href="/">*/}
-    // {/*  <FormattedMessage id="login" />*/}
-    // {/*</ArrowLink>*/}
-    //
-    // {/*<Breadcrumbs*/}
-    // {/*  items={breadcrumbItems ?? []}*/}
-    // {/*  renderLink={(link, item) => {*/}
-    // {/*    // return item?.href ? (*/}
-    // {/*    //   <NextLink href={item?.href} legacyBehavior>*/}
-    // {/*    //     {link}*/}
-    // {/*    //   </NextLink>*/}
-    // {/*    // ) : (*/}
-    // {/*    return link*/}
-    // {/*    // )*/}
-    // {/*  }}*/}
-    // {/*/>*/}
+const getRouteTitleId = (route: string): string => {
+  switch (route) {
+    case '/opened-tax-return':
+      return 'openedTaxCardTitle'
+    default:
+      return 'dashboardTitle'
+  }
 }
 
-export default Navigation;
+const Navigation: React.FC = () => {
+  const { formatMessage } = useIntl()
+
+  const { pathname } = useLocation()
+
+  const isRoot = pathname === '/'
+
+  const breadcrumbItems = [
+    {
+      title: 'Ísland.is',
+    },
+    {
+      title: formatMessage({ id: 'financeTitle' }),
+    },
+    {
+      title: formatMessage({ id: 'informationTitle' }),
+      href: isRoot ? undefined : '/dashboard',
+    },
+  ]
+  if (!isRoot) {
+    breadcrumbItems.push({
+      title: formatMessage({ id: getRouteTitleId(pathname) }),
+    })
+  }
+
+  return <Breadcrumbs items={breadcrumbItems} />
+}
+
+export default Navigation
