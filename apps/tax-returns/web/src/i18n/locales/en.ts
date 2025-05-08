@@ -7,8 +7,8 @@ export default {
   financeTitle: 'Finance & Taxes',
 
   informationTitle: 'Tax returns',
-  informationCardTitle: 'Tax return 2025 still open',
-  informationCardButton: 'Login to the tax return',
+  informationCardTitle: 'Tax return 2025 is ready',
+  informationCardButton: 'Login to see tax return',
   informationBodyText1:
     'The National Archives of Iceland keeps tax returns of individuals and legal entities that have been submitted by tax offices around the country up until the year 2010. They contain various information about rights, such as pension rights, building reports, mortgage purchases, fund days and more. These sources are subject to access restrictions. See more details here about access to documents.',
   informationBodyText2:
