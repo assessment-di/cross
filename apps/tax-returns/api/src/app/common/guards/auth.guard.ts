@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { mockAuth } from '../utils/auth.util';
 import { AuthContext } from '../types/auth.types';
@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     const auth = mockAuth();
 
     if (!auth.isAuthenticated) {
-      throw new Error('Not authenticated');
+      throw new UnauthorizedException('Not authenticated');
     }
 
     // Add the auth result to the request context so it can be used in resolvers

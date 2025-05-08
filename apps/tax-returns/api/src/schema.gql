@@ -50,7 +50,7 @@ input CreateRevenueInput {
   value: Float!
 }
 
-input CreateTaxReturnDto {
+input CreateTaxReturnInput {
   assets: [CreateAssetInput!]
   debts: [CreateDebtInput!]
   revenues: [CreateRevenueInput!]
@@ -93,9 +93,9 @@ enum DebtType {
 }
 
 type Mutation {
-  createTaxReturn(input: CreateTaxReturnDto!): TaxReturn!
+  createTaxReturn(input: CreateTaxReturnInput!): TaxReturn!
   removeTaxReturn(id: ID!): Boolean!
-  updateTaxReturn(id: ID!, input: UpdateTaxReturnDto!): TaxReturn!
+  updateTaxReturn(id: ID!, input: UpdateTaxReturnInput!): TaxReturn!
 }
 
 type Query {
@@ -155,7 +155,7 @@ input UpdateRevenueWithIdInput {
   value: Float
 }
 
-input UpdateTaxReturnDto {
+input UpdateTaxReturnInput {
   createAssets: [CreateAssetInput!]
   createDebts: [CreateDebtInput!]
   createRevenues: [CreateRevenueInput!]

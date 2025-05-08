@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { TaxReturn } from './tax-return.model';
-import { CreateTaxReturnDto } from './dto/create-tax-return.dto';
+import { CreateTaxReturnInput } from './dto/create-tax-return.dto';
 import { TaxReturnService } from './tax-return.service';
-import { UpdateTaxReturnDto } from './dto/update-tax-return.dto';
+import { UpdateTaxReturnInput } from './dto/update-tax-return.dto';
 import { AuthGuard } from '../../common/guards/auth.guard';
 import { ResourceOwner } from '../../common/decorators/resource-owner.decorator';
 import { UseGuards } from '@nestjs/common';
@@ -34,11 +34,11 @@ export class TaxReturnResolver {
 
   @Mutation(() => TaxReturn)
   async createTaxReturn(
-    @Args('input') createTaxReturnDto: CreateTaxReturnDto,
+    @Args('input') CreateTaxReturnInput: CreateTaxReturnInput,
   ): Promise<TaxReturn> {
     // TODO When implementing real authentication, userUuid should be given from the authenticated user. For demonstration purposes using uuidv4()
     return this.taxReturnService.create({
-      ...createTaxReturnDto,
+      ...CreateTaxReturnInput,
       userUuid: uuidv4(),
     });
   }
@@ -46,7 +46,7 @@ export class TaxReturnResolver {
   @Mutation(() => TaxReturn)
   async updateTaxReturn(
     @Args('id', { type: () => ID }) id: number,
-    @Args('input') updateTaxReturnDto: UpdateTaxReturnDto,
+    @Args('input') UpdateTaxReturnInput: UpdateTaxReturnInput,
     @ResourceOwner() userUuid: string,
   ): Promise<TaxReturn> {
     const taxReturn = await this.taxReturnService.findOne(id);
@@ -55,7 +55,7 @@ export class TaxReturnResolver {
       // throw new ForbiddenException('Not authorized to update this tax return');
     }
 
-    return this.taxReturnService.update(id, updateTaxReturnDto);
+    return this.taxReturnService.update(id, UpdateTaxReturnInput);
   }
 
   @Mutation(() => Boolean)

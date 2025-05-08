@@ -1,4 +1,4 @@
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { createParamDecorator, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthContext } from '../types/auth.types';
 
@@ -8,7 +8,7 @@ export const ResourceOwner = createParamDecorator(
     const gqlContext = ctx.getContext<AuthContext>();
 
     if (!gqlContext.auth) {
-      throw new Error('Authentication context not found');
+      throw new UnauthorizedException('Authentication context not found');
     }
 
     return gqlContext.auth.userUuid;

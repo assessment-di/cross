@@ -4,7 +4,7 @@ import { CreateAssetInput } from '../../assets/dto/create-asset.input';
 import { CreateDebtInput } from '../../debts/dto/create-debt.input';
 
 @InputType()
-export class CreateTaxReturnDto {
+export class CreateTaxReturnInput {
   @Field(() => [CreateRevenueInput], { nullable: true })
   revenues?: CreateRevenueInput[];
 

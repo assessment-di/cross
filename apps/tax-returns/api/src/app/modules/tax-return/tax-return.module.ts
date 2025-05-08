@@ -10,6 +10,6 @@ import { Debt } from '../debts/debts.model';
 @Module({
   imports: [SequelizeModule.forFeature([TaxReturn, Revenue, Asset, Debt])],
   providers: [TaxReturnResolver, TaxReturnService],
-  exports: [SequelizeModule],
+  exports: [TaxReturnService],
 })
 export class TaxReturnModule {}

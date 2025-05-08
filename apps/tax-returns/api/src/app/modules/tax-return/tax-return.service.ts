@@ -1,15 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize';
 import { TaxReturn } from './tax-return.model';
-import { CreateTaxReturnDto } from './dto/create-tax-return.dto';
+import { CreateTaxReturnInput } from './dto/create-tax-return.dto';
 import { Revenue } from '../revenue/revenue.model';
 import { Asset } from '../assets/assets.model';
 import { Debt } from '../debts/debts.model';
-import { UpdateTaxReturnDto } from './dto/update-tax-return.dto';
+import { UpdateTaxReturnInput } from './dto/update-tax-return.dto';
 import { Transaction } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 
-interface CreateTaxReturnWithUserUuidDto extends CreateTaxReturnDto {
+interface CreateTaxReturnWithUserUuidDto extends CreateTaxReturnInput {
   userUuid: string;
 }
 
@@ -49,9 +49,9 @@ export class TaxReturnService {
   }
 
   async create(
-    createTaxReturnDto: CreateTaxReturnWithUserUuidDto,
+    CreateTaxReturnInput: CreateTaxReturnWithUserUuidDto,
   ): Promise<TaxReturn> {
-    const { revenues, assets, debts, ...taxReturnData } = createTaxReturnDto;
+    const { revenues, assets, debts, ...taxReturnData } = CreateTaxReturnInput;
 
     return this.sequelize.transaction(async (transaction) => {
       const taxReturn = await this.taxReturnModel.create(taxReturnData, {
@@ -59,7 +59,7 @@ export class TaxReturnService {
       });
 
       if (!taxReturn || !taxReturn.userUuid) {
-        throw new Error('Failed to create tax return');
+        throw new InternalServerErrorException('Failed to create tax return')
       }
 
       if (revenues?.length) {
@@ -100,15 +100,15 @@ export class TaxReturnService {
 
   async update(
     id: number,
-    updateTaxReturnDto: UpdateTaxReturnDto,
+    UpdateTaxReturnInput: UpdateTaxReturnInput,
   ): Promise<TaxReturn> {
     return this.sequelize.transaction(async (transaction) => {
       const taxReturn = await this.findOne(id, transaction);
 
       // Create new revenues
-      if (updateTaxReturnDto.createRevenues?.length) {
+      if (UpdateTaxReturnInput.createRevenues?.length) {
         await this.revenueModel.bulkCreate(
-          updateTaxReturnDto.createRevenues.map((revenue) => ({
+          UpdateTaxReturnInput.createRevenues.map((revenue) => ({
             ...revenue,
             taxReturnId: taxReturn.id,
           })),
@@ -117,9 +117,9 @@ export class TaxReturnService {
       }
 
       // Update existing revenues
-      if (updateTaxReturnDto.updateRevenues?.length) {
+      if (UpdateTaxReturnInput.updateRevenues?.length) {
         await Promise.all(
-          updateTaxReturnDto.updateRevenues.map(async (revenue) => {
+          UpdateTaxReturnInput.updateRevenues.map(async (revenue) => {
             const { id: revenueId, ...updateData } = revenue;
             await this.revenueModel.update(updateData, {
               where: { id: revenueId, taxReturnId: taxReturn.id },
@@ -130,10 +130,10 @@ export class TaxReturnService {
       }
 
       // Delete revenues
-      if (updateTaxReturnDto.deleteRevenueIds?.length) {
+      if (UpdateTaxReturnInput.deleteRevenueIds?.length) {
         await this.revenueModel.destroy({
           where: {
-            id: updateTaxReturnDto.deleteRevenueIds,
+            id: UpdateTaxReturnInput.deleteRevenueIds,
             taxReturnId: taxReturn.id,
           },
           transaction,
@@ -141,9 +141,9 @@ export class TaxReturnService {
       }
 
       // Create new assets
-      if (updateTaxReturnDto.createAssets?.length) {
+      if (UpdateTaxReturnInput.createAssets?.length) {
         await this.assetModel.bulkCreate(
-          updateTaxReturnDto.createAssets.map((asset) => ({
+          UpdateTaxReturnInput.createAssets.map((asset) => ({
             ...asset,
             description: asset.description,
             taxReturnId: taxReturn.id,
@@ -153,9 +153,9 @@ export class TaxReturnService {
       }
 
       // Update existing assets
-      if (updateTaxReturnDto.updateAssets?.length) {
+      if (UpdateTaxReturnInput.updateAssets?.length) {
         await Promise.all(
-          updateTaxReturnDto.updateAssets.map(async (asset) => {
+          UpdateTaxReturnInput.updateAssets.map(async (asset) => {
             const { id: assetId, ...updateData } = asset;
             await this.assetModel.update(
               {
@@ -172,10 +172,10 @@ export class TaxReturnService {
       }
 
       // Delete assets
-      if (updateTaxReturnDto.deleteAssetIds?.length) {
+      if (UpdateTaxReturnInput.deleteAssetIds?.length) {
         await this.assetModel.destroy({
           where: {
-            id: updateTaxReturnDto.deleteAssetIds,
+            id: UpdateTaxReturnInput.deleteAssetIds,
             taxReturnId: taxReturn.id,
           },
           transaction,
@@ -183,9 +183,9 @@ export class TaxReturnService {
       }
 
       // Create new debts
-      if (updateTaxReturnDto.createDebts?.length) {
+      if (UpdateTaxReturnInput.createDebts?.length) {
         await this.debtModel.bulkCreate(
-          updateTaxReturnDto.createDebts.map((debt) => ({
+          UpdateTaxReturnInput.createDebts.map((debt) => ({
             ...debt,
             description: debt.description,
             taxReturnId: taxReturn.id,
@@ -195,9 +195,9 @@ export class TaxReturnService {
       }
 
       // Update existing debts
-      if (updateTaxReturnDto.updateDebts?.length) {
+      if (UpdateTaxReturnInput.updateDebts?.length) {
         await Promise.all(
-          updateTaxReturnDto.updateDebts.map(async (debt) => {
+          UpdateTaxReturnInput.updateDebts.map(async (debt) => {
             const { id: debtId, ...updateData } = debt;
             await this.debtModel.update(
               {
@@ -214,10 +214,10 @@ export class TaxReturnService {
       }
 
       // Delete debts
-      if (updateTaxReturnDto.deleteDebtIds?.length) {
+      if (UpdateTaxReturnInput.deleteDebtIds?.length) {
         await this.debtModel.destroy({
           where: {
-            id: updateTaxReturnDto.deleteDebtIds,
+            id: UpdateTaxReturnInput.deleteDebtIds,
             taxReturnId: taxReturn.id,
           },
           transaction,
