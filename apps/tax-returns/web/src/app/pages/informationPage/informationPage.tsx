@@ -16,7 +16,7 @@ const InformationPage: React.FC = () => {
         className={styles.relatedInfo}
       >
         <Text variant="h4" marginBottom={3}>
-          Related material
+          <FormattedMessage id="informationSideTitle" />
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
@@ -25,47 +25,47 @@ const InformationPage: React.FC = () => {
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Personal history
+            <FormattedMessage id="informationSidePoint1" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Paternity
+            <FormattedMessage id="informationSidePoint2" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Education
+            <FormattedMessage id="informationSidePoint3" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Medical records
+            <FormattedMessage id="informationSidePoint4" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Child protection data
+            <FormattedMessage id="informationSidePoint5" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Divorce proceedings
+            <FormattedMessage id="informationSidePoint6" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Police matters
+            <FormattedMessage id="informationSidePoint7" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginY={1}>
           <Link href="/">
-            Judical matters
+            <FormattedMessage id="informationSidePoint8" />
           </Link>
         </Text>
         <Text color="blue600" variant="medium" marginTop={1}>
           <Link href="/">
-            Estate
+            <FormattedMessage id="informationSidePoint9" />
           </Link>
         </Text>
       </Box>
@@ -92,51 +92,24 @@ const InformationPage: React.FC = () => {
           </Button>
       </Box>
 
-      <Text variant="h3" as="h3" marginY={3}>
-        General information
-      </Text>
       <Text marginY={2}>
-        A tax return can be submitted{' '}
-        <Text color="blue400" as="span">
-          <Link href="/opened-tax-return">electronically</Link>
-        </Text>{' '}
-        and by sending messages from a tax return program used by accountants,
-        bookkeepers and other persons who are employed in the preparation of tax
-        returns.
+        <FormattedMessage id="informationBody1" />
       </Text>
       <Text variant="h5" marginY={2}>
-        The Directorate of Internal Revenue offers electronic submission of four
-        types of tax returns, which are:
+        <FormattedMessage id="informationBody2" />
       </Text>
-      <Text marginY={2}>• RSK 1.01 Tax return for individuals</Text>
-      <Text marginY={2}>• RSK 1.02 Children's tax return</Text>
+      <Text marginY={2}>• <FormattedMessage id="informationBody2Point1" /></Text>
+      <Text marginY={2}>• <FormattedMessage id="informationBody2Point2" /></Text>
+      <Text marginY={2}>• <FormattedMessage id="informationBody2Point3" /></Text>
+      <Text marginTop={2} marginBottom={3}>• <FormattedMessage id="informationBody2Point4" /></Text>
       <Text marginY={2}>
-        • RSK 1.04 Tax return of business operators (legal entities)
-      </Text>
-      <Text marginTop={2} marginBottom={3}>
-        • RSK 1.06 Tax return of non-taxable legal entities
+        <FormattedMessage id="informationBody3" />
       </Text>
       <Text marginY={2}>
-        All individuals and legal entities subject to tax returns have been
-        assigned a master web key and a return key. Those who declare themselves
-        are expected to use the master web key, but if they let someone else
-        take care of the preparation of the tax return, they hand over the
-        return key to him.
+        <FormattedMessage id="informationBody4" />
       </Text>
       <Text marginY={2}>
-        When counting for a married couple, one of the couple's web keys is
-        sufficient to open the tax return and submit it. The same applies to a
-        couple in a registered cohabitation and people in an unmarried
-        cohabitation who are counting together. If they do not count together,
-        each must use its own web key.
-      </Text>
-      <Text marginY={2}>
-        If a tax return must be submitted for a child under the age of 16, the
-        web key of the child's provider is used. The child's provider is
-        considered the person who had the child with him or her at the end of
-        the income year, according to the National Registry. On the service
-        page, under the tab Returns, there is a special login area to open the
-        child's tax return.
+        <FormattedMessage id="informationBody5" />
       </Text>
       <Text marginTop={2} marginBottom={3}>
         Tax returns submitted on paper have mostly been submitted to the

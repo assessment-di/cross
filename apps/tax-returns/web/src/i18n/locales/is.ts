@@ -1,6 +1,36 @@
 export default {
   title: 'Tax revenue 2025 – Jökull Þórðarson',
   menu: 'Valmynd',
+  globalSearch: 'Hvað ertu að leita að?',
+  login: 'Innskráning',
+  logout: 'Útskráning',
+  financeTitle: 'Fjármál og skattar',
+
+  informationTitle: 'Skattframtal',
+
+  informationCardTitle: 'Skattframtal 2025 er opið',
+  informationCardButton: 'Innskráning á þjónustuvef',
+
+  informationSideTitle: 'Skattamál',
+  informationSidePoint1: 'Persónuafsláttur',
+  informationSidePoint2: 'Kílómetragjald',
+  informationSidePoint3: 'Bankareikningar',
+  informationSidePoint4: 'Helstu tölur og prósentur',
+  informationSidePoint5: 'Endurgreiðsla VSK af íbúðarhúsnæði',
+  informationSidePoint6: 'Leiðbeiningar um sjálfsafgreiðslu',
+  informationSidePoint7: 'Barnabætur / Vaxtabætur',
+  informationSidePoint8: 'Nýting séreignarsparnaðar',
+  informationSidePoint9: 'Að hefja rekstur',
+
+  informationBody1: 'Skattframtali er hægt að skila rafrænt og með skeytasendingum úr framtalsforriti sem notað er af endurskoðendum, bókurum og öðrum þeim sem atvinnu hafa af framtalsgerð.',
+  informationBody2: 'Ríkisskattstjóri býður upp á rafræn skil á fjórum tegundum skattframtala, sem eru:',
+  informationBody2Point1: 'RSK 1.01  Skattframtal einstaklinga',
+  informationBody2Point2: 'RSK 1.02  Skattframtal barns',
+  informationBody2Point3: 'RSK 1.04  Skattframtal rekstraraðila (lögaðila)',
+  informationBody2Point4: 'RSK 1.06  Framtal óskattskyldra lögaðila',
+  informationBody3: 'Öllum framtalsskyldum einstaklingum og lögaðilum hefur verið úthlutað aðalveflykli og skilalykli. Ætlast er til að þeir sem telja fram sjálfir noti aðalveflykilinn, en láti þeir annan sjá um framtalsgerð afhendi þeir honum skilalykilinn.',
+  informationBody4: 'Þegar talið er fram fyrir hjón dugir veflykill annars hjóna til að opna framtalið og skila því. Sama gildir um par í staðfestri samvist og fólk í óvígðri sambúð sem telur fram saman. Telji þau ekki fram saman þarf hvort að nota sinn veflykil.',
+  informationBody5: 'Ef skila þarf skattframtali fyrir barn yngra en 16 ára er veflykill framfæranda barnsins notaður. Framfærandi barns telst sá sem hafði barnið hjá sér í lok tekjuárs, samkvæmt þjóðskrá. Á þjónustusíðunni, undir flipanum Framtal, er sérstakt innskráningarsvæði til að opna skattframtal barns.',
 
   informationFormInput2: "Símanúmer",
   openedTaxTitle: 'Skattframtal',

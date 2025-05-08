@@ -7,36 +7,32 @@ export default {
   financeTitle: 'Finance & Taxes',
 
   informationTitle: 'Tax returns',
+
+
   informationCardTitle: 'Tax return 2025 is ready',
   informationCardButton: 'Login to see tax return',
-  informationBodyText1:
-    'The National Archives of Iceland keeps tax returns of individuals and legal entities that have been submitted by tax offices around the country up until the year 2010. They contain various information about rights, such as pension rights, building reports, mortgage purchases, fund days and more. These sources are subject to access restrictions. See more details here about access to documents.',
-  informationBodyText2:
-    'In order to process tax returns, certain basic information must be available',
-  informationBodyPoint1: 'Name and date of birth of the person who declares',
-  informationBodyPoint2:
-    'In which municipality the person concerned was domiciled',
-  informationBodyPoint3: 'Tax year',
-  informationBodyPoint4:
-    'Name and date of birth of the spouse in the case of co-taxation',
-  informationBodyText3:
-    'Tax returns that were submitted in electronic form are processed by the Iceland Revenue and Customs.',
-  informationBodyText4:
-    'Tax returns submitted on paper have mostly been submitted to the National Archives for preservation. The main exceptions are',
-  informationBodyPoint5:
-    'Tax returns from Reykjavík up to 1981 are archived in the Reykjavík City Archives.',
-  informationBodyPoint6: 'Tax returns from the South after 1960.',
-  informationBodyPoint7: 'Tax returns from the West Fjords after 1984.',
-  informationFormTitle: 'Inquery about tax return',
-  informationFormInput1: 'Full name',
-  informationFormInput2: 'Email',
-  informationFormInput3: 'Name of inquerer',
-  informationFormInput4: 'ID number',
-  informationFormInput5: 'Year of tax return',
-  informationFormInput6: 'Municipality',
-  informationFormInput7: 'Partners name',
-  informationFormInput8: 'Partners ID number',
-  informationFormSubmit: 'Submit',
+
+  informationSideTitle: 'Related material',
+  informationSidePoint1: 'Personal history',
+  informationSidePoint2: 'Paternity',
+  informationSidePoint3: 'Education',
+  informationSidePoint4: 'Medical records',
+  informationSidePoint5: 'Child protection data',
+  informationSidePoint6: 'Divorce proceedings',
+  informationSidePoint7: 'Police matters',
+  informationSidePoint8: 'Judical matters',
+  informationSidePoint9: 'Estate',
+
+  informationBody1: '        A tax return can be submitted electronically and by sending messages from a tax return program used by accountants, bookkeepers and other persons who are employed in the preparation of tax returns.',
+  informationBody2: 'The Directorate of Internal Revenue offers electronic submission of four types of tax returns, which are:',
+  informationBody2Point1: 'RSK 1.01 Tax return for individuals',
+  informationBody2Point2: 'RSK 1.02 Children\'s tax return',
+  informationBody2Point3: 'RSK 1.04 Tax return of business operators (legal entities)',
+  informationBody2Point4: 'RSK 1.06 Tax return of non-taxable legal entities',
+  informationBody3: 'All individuals and legal entities subject to tax returns have been assigned a master web key and a return key. Those who declare themselves are expected to use the master web key, but if they let someone else take care of the preparation of the tax return, they hand over the return key to him.',
+  informationBody4: 'When counting for a married couple, one of the couple\'s web keys is sufficient to open the tax return and submit it. The same applies to a couple in a registered cohabitation and people in an unmarried cohabitation who are counting together. If they do not count together,  each must use its own web key.',
+  informationBody5: 'If a tax return must be submitted for a child under the age of 16, the web key of the child\'s provider is used. The child\'s provider is considered the person who had the child with him or her at the end of the income year, according to the National Registry. On the service page, under the tab Returns, there is a special login area to open the child\'s tax return.',
+
   openedTaxTitle: 'Tax return',
   openedTaxTitle4: 'Debt and interests',
   openedTaxTitle3: 'Assets',
